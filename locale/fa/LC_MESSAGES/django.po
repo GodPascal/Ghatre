@@ -1,0 +1,329 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-24 23:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: home/models.py:7
+
+msgid "Male"
+msgstr "مرد"
+
+msgid "Female"
+msgstr "زن"
+
+msgid "Other"
+msgstr "دیگر"
+
+msgid "Iranian"
+msgstr "ایرانی"
+
+msgid "Alborz"
+msgstr "البرز"
+
+msgid "Ardabil"
+msgstr "اردبیل"
+
+msgid "Bushehr"
+msgstr "بوشهر"
+
+msgid "Chaharmahal and Bakhtiari"
+msgstr "چهارمحال و بختیاری"
+
+msgid "East Azerbaijan"
+msgstr "آذربایجان شرقی"
+
+msgid "Isfahan"
+msgstr "اصفهان"
+
+msgid "Fars"
+msgstr "فارس"
+
+msgid "Gilan"
+msgstr "گیلان"
+
+msgid "Golestan"
+msgstr "گلستان"
+
+msgid "Hamadan"
+msgstr "همدان"
+
+msgid "Hormozgan"
+msgstr "هرمزگان"
+
+msgid "Ilam"
+msgstr "ایلام"
+
+msgid "Kerman"
+msgstr "کرمان"
+
+msgid "Kermanshah"
+msgstr "کرمانشاه"
+
+msgid "Khuzestan"
+msgstr "خوزستان"
+
+msgid "Kohgiluyeh and Boyer-Ahmad"
+msgstr "کهگیلویه و بویراحمد"
+
+msgid "Kurdistan"
+msgstr "کردستان"
+
+msgid "Lorestan"
+msgstr "لرستان"
+
+msgid "Markazi"
+msgstr "مرکزی"
+
+msgid "Mazandaran"
+msgstr "مازندران"
+
+msgid "North Khorasan"
+msgstr "خراسان شمالی"
+
+msgid "Qazvin"
+msgstr "قزوین"
+
+msgid "Qom"
+msgstr "قم"
+
+msgid "Razavi Khorasan"
+msgstr "خراسان رضوی"
+
+msgid "Semnan"
+msgstr "سمنان"
+
+msgid "Sistan and Baluchestan"
+msgstr "سیستان و بلوچستان"
+
+msgid "South Khorasan"
+msgstr "خراسان جنوبی"
+
+msgid "Tehran"
+msgstr "تهران"
+
+msgid "West Azerbaijan"
+msgstr "آذربایجان غربی"
+
+msgid "Yazd"
+msgstr "یزد"
+
+msgid "Zanjan"
+msgstr "زنجان"
+
+msgid "Not Iranian"
+msgstr "غیر ایرانی"
+
+msgid "Single"
+msgstr "مجرد"
+
+msgid "Married"
+msgstr "متاهل"
+
+msgid "Divorced"
+msgstr "طلاق گرفته"
+
+msgid "Widowed"
+msgstr "بیوه"
+
+msgid "Health Insurance"
+msgstr "بیمه درمانی"
+
+msgid "Social Security"
+msgstr "تامین اجتماعی"
+
+msgid "Unemployment Insurance"
+msgstr "بیمه بیکاری"
+
+msgid "Retirement Pension"
+msgstr "بازنشستگی"
+
+msgid "None"
+msgstr "هیچکدام"
+
+msgid "Creator"
+msgstr "ایجاد کننده"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Created At"
+msgstr "ایجاد شده در"
+
+msgid "Modified At"
+msgstr "ویرایش شده در"
+
+msgid "First Name"
+msgstr "نام"
+
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+msgid "Gender"
+msgstr "جنسیت"
+
+msgid "Birthdate"
+msgstr "تاریخ تولد"
+
+msgid "National Code"
+msgstr "کد ملی"
+
+msgid "Nationality"
+msgstr "ملیت"
+
+msgid "First Guardian Name"
+msgstr "نام اولین سرپرست"
+
+msgid "First Guardian National Code"
+msgstr "کد ملی اولین سرپرست"
+
+msgid "First Guardian Relation"
+msgstr "نسبت اولین سرپرست"
+
+msgid "Second Guardian Name"
+msgstr "نام دومین سرپرست"
+
+msgid "Second Guardian National Code"
+msgstr "کد ملی دومین سرپرست"
+
+msgid "Second Guardian Relation"
+msgstr "نسبت دومین سرپرست"
+
+msgid "Social Insurance Type"
+msgstr "نوع بیمه اجتماعی"
+
+msgid "Social Insurance Number"
+msgstr "شماره بیمه اجتماعی"
+
+msgid "Social Insurance Description"
+msgstr "توضیحات بیمه اجتماعی"
+
+msgid "Educational Status"
+msgstr "وضعیت تحصیلی"
+
+msgid "Has Private Insurance"
+msgstr "دارای بیمه خصوصی"
+
+msgid "Private Insurance Name"
+msgstr "نام بیمه خصوصی"
+
+msgid "Private Insurance Number"
+msgstr "شماره بیمه خصوصی"
+
+msgid "Marital Status"
+msgstr "وضعیت تاهل"
+
+msgid "Marital Status Description"
+msgstr "توضیحات وضعیت تاهل"
+
+msgid "Housing Status"
+msgstr "وضعیت مسکن"
+
+msgid "Deposit Amount"
+msgstr "مبلغ سپرده"
+
+msgid "Rent Amount"
+msgstr "مبلغ اجاره"
+
+msgid "Has Job"
+msgstr "دارای شغل"
+
+msgid "Monthly Income"
+msgstr "درآمد ماهانه"
+
+msgid "Subsidy"
+msgstr "یارانه"
+
+msgid "Family Monthly Expenses"
+msgstr "هزینه‌های ماهانه خانواده"
+
+msgid "Amount of Installment or Debt"
+msgstr "میزان قسط یا بدهی"
+
+msgid "Repayment Due Date"
+msgstr "تاریخ سررسید بازپرداخت"
+
+msgid "Income Expenses Description"
+msgstr "توضیحات درآمد و هزینه‌ها"
+
+msgid "Province of Residence"
+msgstr "استان محل سکونت"
+
+msgid "City of Residence"
+msgstr "شهر محل سکونت"
+
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Mobile Number"
+msgstr "شماره موبایل"
+
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+msgid "Representor"
+msgstr "نماینده"
+
+msgid "Representor Relation"
+msgstr "نسبت نماینده"
+
+msgid "Referrer Name"
+msgstr "نام معرف"
+
+msgid "Other Information"
+msgstr "سایر اطلاعات"
+
+msgid "Patient Case"
+msgstr "بیمار"
+
+msgid "Patient Cases"
+msgstr "بیمارها"
+
+msgid "Relation"
+msgstr "رابطه"
+
+msgid "Year of Birth"
+msgstr "سال تولد"
+
+msgid "Occupation"
+msgstr "شغل"
+
+msgid "Health Status"
+msgstr "وضعیت سلامت"
+
+msgid "Relative"
+msgstr "خویشاوند"
+
+msgid "Relatives"
+msgstr "خویشاوندان"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Support Amount"
+msgstr "مبلغ حمایت"
+
+msgid "Support Start"
+msgstr "شروع حمایت"
+
+msgid "Support End"
+msgstr "پایان حمایت"
+
+msgid "Other Supporter"
+msgstr "حامی دیگر"
+
+msgid "Other Supporters"
+msgstr "حامیان دیگر"
