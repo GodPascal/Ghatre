@@ -327,3 +327,12 @@ msgstr "حامی دیگر"
 
 msgid "Other Supporters"
 msgstr "حامیان دیگر"
+
+msgid "Document"
+msgstr "مدرک"
+
+msgid "Documents"
+msgstr "مدارک"
+
+msgid "Type"
+msgstr "نوع"

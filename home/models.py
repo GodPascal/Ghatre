@@ -212,4 +212,8 @@ class Document(models.Model):
     type = models.CharField(max_length=30, choices=DOCUMENT_TYPE_CHOICES, verbose_name=_('Type'))
     uploaded_file = models.FileField(upload_to='uploads/documents/', verbose_name=_('File'))
 
+    class Meta:
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')
+
      
