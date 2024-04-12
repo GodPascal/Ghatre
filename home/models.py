@@ -106,6 +106,28 @@ DOCUMENT_TYPE_CHOICES = [
     
 ]
 
+DISEASE_TYPE_CHOICES = [
+    ('Infectious and parasitic','عفونی و انگلی'),
+    ('Cancer and blood diseases','سرطان و بیماری های خونی'),
+    ('Safety system','سیستم ایمنی'),
+    ('Glands','غدد'),
+    ('Psychiatry','اعصاب و روان'),
+    ('Neurology','مغز و اعصاب'),
+    ('Eye disease','بیماری چشمی'),
+    ('Ear nose and throat','گوش و حلق و بینی'),
+    ('Cardiovascular','قلبی-عروقی'),
+    ('Respiratory','تنفسی'),
+    ('Digestive','گوارشی'),
+    ('Skin','پوستی'),
+    ('Musculoskeletal','عضلانی-اسکلتی'),
+    ('Kidney and genitourinary tract','کلیه و مجاری ادراری-تناسلی'),
+    ('Obstetrics and Gynecology','زنان و زایمان '),
+    ('Genetic and congenital','ژنتیکی و مادرزادی '),
+    ('Accidents','سوانح'),
+    ('other','سایر'),
+
+]
+
 
 class PatientCase(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Creator'))
@@ -166,9 +188,15 @@ class PatientCase(models.Model):
 
     other_information = models.TextField(blank=True, verbose_name=_('Other Information'))
 
+    patient_problem = models.TextField(blank=True, verbose_name=_('Patient Problem'))
+    helper_comment = models.TextField(blank=True, verbose_name=_('Helper Comment'))
+
     class Meta:
         verbose_name = _('Patient Case')
         verbose_name_plural = _('Patient Cases')
+    
+    def __str__(self) -> str:
+        return '%s       %s' % (self.first_name, self.last_name)
 
 
 class Relative(models.Model):
@@ -215,5 +243,47 @@ class Document(models.Model):
     class Meta:
         verbose_name = _('Document')
         verbose_name_plural = _('Documents')
+
+class MedicalRecord(models.Model):
+    patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Creator'))
+    disease_type = models.CharField(max_length=30, choices=DISEASE_TYPE_CHOICES, verbose_name=_('Disease Type'))
+    disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
+    second_disease_name = models.CharField(blank=True, max_length=255, verbose_name=_('Disease Name (2nd)'))
+    diagnosis_year = models.IntegerField(verbose_name=_('Diagnosis Year'))
+
+    diagnosis = models.TextField(blank=True, verbose_name=_('Diagnosis'))
+    diagnosis_tests = models.TextField(blank=True, verbose_name=_('Diagnosis Tests'))
+    drug_history = models.TextField(blank=True, verbose_name=_('Drug History'))
+    surgery_history = models.TextField(blank=True, verbose_name=_('Surgery History'))
+    other_diseases = models.TextField(blank=True, verbose_name=_('Other Diseases'))
+    dietary_habits = models.TextField(blank=True, verbose_name=_('Dietary Habits'))
+    movement_ability = models.CharField(blank=True, max_length=255, verbose_name=_('Movement Ability'))
+    routines_ability = models.CharField(blank=True, max_length=255, verbose_name=_('Routines Ability'))
+    talking_and_swallowing = models.CharField(blank=True, max_length=255, verbose_name=_('Talking and Swallowing'))
+    gatherings_attending = models.CharField(blank=True, max_length=255, verbose_name=_('Gatherings Attending'))
+    family_and_social = models.CharField(blank=True, max_length=255, verbose_name=_('ّFamily and Social'))
+    
+    height = models.FloatField(null=True, blank=True, verbose_name=_('Height'))
+    weight = models.FloatField(null=True, blank=True, verbose_name=_('Weight'))
+
+    drugs_abuse = models.CharField(blank=True, max_length=255, verbose_name=_('Drugs Abuse'))
+    other_information = models.CharField(blank=True, max_length=255, verbose_name=_('Other Information'))
+    treatment_facilities = models.CharField(blank=True, max_length=255, verbose_name=_('Treatment Facilities'))
+    doctors_names = models.CharField(blank=True, max_length=255, verbose_name=_('Doctors Names'))
+
+    class Meta:
+        verbose_name = _('Medical Record')
+        verbose_name_plural = _('Medical Records')
+    
+    
+    
+    
+    
+
+    
 
      
