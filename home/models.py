@@ -84,6 +84,28 @@ HOUSING_STATUS_CHOICES = [
     ('relatives', 'بستگان'),
 ]
 
+DOCUMENT_TYPE_CHOICES = [
+    ('birth_certificate','شناسنامه'),
+    ('id_card','کارت ملی'),
+    ('guardian_id_card','کارت ملی سرپرست خانوار'),
+    ('guardian_birth_certificate','شناسنامه سرپرست خانوار'),
+    ('job_certificate','مدرک شغلی'),
+    ('property_certificate','مدرک ملکی'),
+    ('drugs_images','تصویر داروها'),
+    ('supplementary_insurance','بیمه تکمیلی'),
+    ('insurance_letter','معرفی‌نامه بیمه'),    
+    ('introduction_letter','معرفی‌نامه'),
+    ('prescription','نسخه'),
+    ('pre_invoice','پیش فاکتور'),
+    ('case_sheet','برگه خلاصه پرونده'),
+    ('doctor_note','گواهی پزشک'),
+    ('lab_results','نتایج آزمایش‌ها'),
+    ('radiology','عکس‌برداری'),
+    ('statement','فرم اظهارنامه'),
+    ('special_medicine_form','فرم داروهای تک‌نسخه‌ای'),
+    
+]
+
 
 class PatientCase(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Creator'))
@@ -182,3 +204,12 @@ class OtherSupporter(models.Model):
     class Meta:
         verbose_name = _('Other Supporter')
         verbose_name_plural = _('Other Supporters')
+
+class Document(models.Model):
+    patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+    type = models.CharField(max_length=30, choices=DOCUMENT_TYPE_CHOICES, verbose_name=_('Type'))
+    uploaded_file = models.FileField(upload_to='uploads/documents/', verbose_name=_('File'))
+
+     
