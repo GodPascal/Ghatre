@@ -408,3 +408,6 @@ msgstr "وضعیت درمانی"
 
 msgid "Medical Records"
 msgstr "وضعیت درمانی"
+
+msgid "Other Supporter's Section Header"
+msgstr "فهرست مؤسسات، شرکت‌ها، سازمان‌ها یا خیریه‌هایی که از آنها برای تامین دارو یا سایر امور کمک گرفته می‌شود"

@@ -163,8 +163,8 @@ class PatientCase(models.Model):
     marital_status_description = models.TextField(blank=True, verbose_name=_('Marital Status Description'))
 
     housing_status = models.CharField(max_length=20, choices=HOUSING_STATUS_CHOICES, verbose_name=_('Housing Status'))
-    deposit_amount = models.IntegerField(blank=True, verbose_name=_('Deposit Amount'))
-    rent_amount = models.IntegerField(blank=True, verbose_name=_('Rent Amount'))
+    deposit_amount = models.IntegerField(blank=True, null=True, verbose_name=_('Deposit Amount'))
+    rent_amount = models.IntegerField(blank=True, null=True, verbose_name=_('Rent Amount'))
 
     has_job = models.BooleanField(null=True, verbose_name=_('Has Job'))
     monthly_income = models.IntegerField(verbose_name=_('Monthly Income'))
@@ -238,7 +238,7 @@ class Document(models.Model):
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     type = models.CharField(max_length=30, choices=DOCUMENT_TYPE_CHOICES, verbose_name=_('Type'))
-    uploaded_file = models.FileField(upload_to='uploads/documents/', verbose_name=_('File'))
+    uploaded_file = models.FileField(upload_to='documents/', verbose_name=_('File'))
 
     class Meta:
         verbose_name = _('Document')
