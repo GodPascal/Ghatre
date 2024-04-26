@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_jalali',
     'home',
+    'import_export'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = 'static'
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
 # STATICFILES_DIRS = [ 'static' ]
 
 LOCALE_PATHS = [ 'locale' ]

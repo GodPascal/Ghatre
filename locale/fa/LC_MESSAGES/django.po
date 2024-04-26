@@ -327,3 +327,87 @@ msgstr "حامی دیگر"
 
 msgid "Other Supporters"
 msgstr "حامیان دیگر"
+
+msgid "Document"
+msgstr "مدرک"
+
+msgid "Documents"
+msgstr "مدارک"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Patient Problem"
+msgstr "بیان مشکل از نظر مراجع و درخواست"
+
+msgid "Helper Comment"
+msgstr "نظر مددکار"
+
+msgid "Disease Type"
+msgstr "دسته بیماری"
+
+msgid "Disease Name"
+msgstr "نام بیماری"
+
+msgid "Disease Name (2nd)"
+msgstr "بیماری دوم"
+
+msgid "Diagnosis Year"
+msgstr "سال تشخیص"
+
+msgid "Diagnosis"
+msgstr "نحوه تشخیص بیماری و کلیه اقدامات درمانی که برای بیمار انجام شده است را شرح دهید"
+
+msgid "Diagnosis Tests"
+msgstr "آزمایش‌های تشخیصی و زمان انجام"
+
+msgid "Drug History"
+msgstr "سابقه دارویی"
+
+msgid "Surgery History"
+msgstr "سابقه جراحی"
+
+msgid "Other Diseases"
+msgstr "سایر بیماری‌های زمینه‌ای"
+
+msgid "Dietary Habits"
+msgstr "وضعیت تغذیه‌ای"
+
+msgid "Movement Ability"
+msgstr "توانایی حرکتی"
+
+msgid "Routines Ability"
+msgstr "انجام کارهای شخصی"
+
+msgid "Talking and Swallowing"
+msgstr "حرف زدن و بلعیدن"
+
+msgid "Gatherings Attending"
+msgstr "حضور در مهمانی و دورهمی"
+
+msgid "Family and Social"
+msgstr "روابط خانوداگی و اجتماعی"
+
+msgid "Height"
+msgstr "قد"
+
+msgid "Weight"
+msgstr "وزن"
+
+msgid "Drugs Abuse"
+msgstr "سابقه‌ مصرف موارد مخدر و مقدار آن"
+
+msgid "Treatment Facilities"
+msgstr "محل انجام کارهای درمانی"
+
+msgid "Doctors Names"
+msgstr "نام پزشکان معالج"
+
+msgid "Medical Record"
+msgstr "وضعیت درمانی"
+
+msgid "Medical Records"
+msgstr "وضعیت درمانی"
+
+msgid "Other Supporter's Section Header"
+msgstr "فهرست مؤسسات، شرکت‌ها، سازمان‌ها یا خیریه‌هایی که از آنها برای تامین دارو یا سایر امور کمک گرفته می‌شود"
