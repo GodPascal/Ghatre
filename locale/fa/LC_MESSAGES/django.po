@@ -259,11 +259,20 @@ msgstr "تاریخ سررسید بازپرداخت"
 msgid "Income Expenses Description"
 msgstr "توضیحات درآمد و هزینه‌ها"
 
+msgid "Country"
+msgstr "کشور"
+
 msgid "Province of Residence"
 msgstr "استان محل سکونت"
 
+msgid "Province"
+msgstr "استان"
+
 msgid "City of Residence"
 msgstr "شهر محل سکونت"
+
+msgid "City"
+msgstr "شهر"
 
 msgid "Address"
 msgstr "آدرس"
@@ -411,3 +420,27 @@ msgstr "وضعیت درمانی"
 
 msgid "Other Supporter's Section Header"
 msgstr "فهرست مؤسسات، شرکت‌ها، سازمان‌ها یا خیریه‌هایی که از آنها برای تامین دارو یا سایر امور کمک گرفته می‌شود"
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "Drug Brands"
+msgstr "برند های دارو"
+
+msgid "Drug Brand"
+msgstr "برند دارو"
+
+msgid "Drugs"
+msgstr "دارو ها"
+
+msgid "Drug"
+msgstr "دارو"
+
+msgid "Generic Drugs"
+msgstr "داروهای ژنریک"
+
+msgid "Generic Drug"
+msgstr "داروی ژنریک"
+
+msgid "Brand Name"
+msgstr "نام برند"

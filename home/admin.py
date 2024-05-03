@@ -3,7 +3,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from home.models import PatientCase, Relative, OtherSupporter, Document, MedicalRecord
+from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Document, MedicalRecord
 from django.core import serializers
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -89,3 +89,13 @@ class MedicalRecordAdmin(admin.ModelAdmin):
     @admin.display(description='Patient Name', ordering='patient__name')
     def get_patient_name(self, obj):
         return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)
+
+@admin.register(DrugBrand)
+class DrugBrandAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in DrugBrand._meta.fields]
+    inlines = []
+
+@admin.register(GenericDrug)
+class GenericDrugAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in GenericDrug._meta.fields]
+    inlines = []
