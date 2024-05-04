@@ -137,10 +137,12 @@ class PatientCase(models.Model):
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     first_name = models.CharField(max_length=255, verbose_name=_('First Name'))
     last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
+    father_name = models.CharField(max_length=255, verbose_name=_('Father Name'))
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name=_('Gender'))
     birthdate = models.DateField(verbose_name=_('Birthdate'))
     national_code = models.CharField(max_length=10, verbose_name=_('National Code'))
     nationality = models.CharField(max_length=10, choices=NATIONALITY_CHOICES, verbose_name=_('Nationality'))
+
 
     first_guardian_name = models.CharField(max_length=255, verbose_name=_('First Guardian Name'))
     first_guardian_national_code = models.CharField(max_length=10, blank=True, verbose_name=_('First Guardian National Code'))
