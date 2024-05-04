@@ -444,3 +444,30 @@ msgstr "داروی ژنریک"
 
 msgid "Brand Name"
 msgstr "نام برند"
+
+msgid "Ghatre Title"
+msgstr "جمعیت خیریه حمایت دارویی قطره"
+
+msgid "Patient Case Form"
+msgstr "فرم مشخصات بیمار"
+
+msgid "Relative Form"
+msgstr "فرم مشخصات خانوادگی بیمار"
+
+msgid "Case Number"
+msgstr "شماره پرونده"
+
+msgid "Service Date"
+msgstr "تاریخ مراجعه"
+
+msgid "Operator Name"
+msgstr "نام تکمیل کننده"
+
+msgid "Father Name"
+msgstr "نام پدر"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Export Pdf"
+msgstr "خروجی pdf"
