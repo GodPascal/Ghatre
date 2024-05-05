@@ -206,6 +206,91 @@
                 <td colspan="7">{{patient.helper_comment}}</td>
             </tr>
         </table>
+        <div>
+            <h4 style="text-align: center;">{% translate "Medical Record Form"%}</h4>
+        </div>
+        <table>
+            {% for medical_record in  patient.medicalrecord_set.all %}
+                <tr>
+                    <th>{% translate "Operator Name" %}</th>
+                    <td>??</td>
+                    <th>{% translate "Creation Date" %}</th>
+                    <td>??</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Age" %}</th>
+                    <td>{{ patient.birthdate}}</td>
+                    <th>{% translate "Diagnosis Year" %}</th>
+                    <td>{{ medical_record.diagnosis_year }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Disease Name" %}</th>
+                    <td colspan="3">{{ medical_record.disease_name}}</td>
+                </tr>
+                <tr>
+                    <th colspan="4" style="text-align: center;">{% translate "Medical History" %}</th>
+                </tr>
+                <tr>
+                    <th>{% translate "Diagnosis" %}</th>
+                    <td colspan="3">{{ medical_record.diagnosis}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Diagnosis Tests" %}</th>
+                    <td colspan="3">{{ medical_record.diagnosis_tests}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Drug History" %}</th>
+                    <td colspan="3">{{ medical_record.drug_history}}</td>
+                </tr> 
+                <tr>
+                    <th>{% translate "Surgery History" %}</th>
+                    <td colspan="3">{{ medical_record.surgery_history}}</td>
+                </tr> 
+                <tr>
+                    <th>{% translate "Other Diseases" %}</th>
+                    <td colspan="3">{{ medical_record.other_diseases}}</td>
+                </tr> 
+                <tr>
+                    <th>{% translate "Dietary Habits" %}</th>
+                    <td colspan="3">{{ medical_record.dietary_habits}}</td>
+                </tr> 
+                <tr>
+                    <th colspan="4" style="text-align: center;">{% translate "Current Status" %}</th>
+                </tr>
+                <tr>
+                    <th>{% translate "Movement Ability" %}</th>
+                    <td>{{ medical_record.movement_ability}}</td>
+                    <th>{% translate "Routines Ability" %}</th>
+                    <td>{{ medical_record.routines_ability }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Talking and Swallowing" %}</th>
+                    <td>{{ medical_record.talking_and_swallowing}}</td>
+                    <th>{% translate "Gatherings Attending" %}</th>
+                    <td>{{ medical_record.gatherings_attending }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Family and Social" %}</th>
+                    <td>{{ medical_record.family_and_social}}</td>
+                    <th>{% translate "Height" %}-{% translate "Weight" %}</th>
+                    <td>{{ medical_record.height }}-{{ medical_record.weight }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Drugs Abuse" %}</th>
+                    <td colspan="3">{{ medical_record.drugs_abuse}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Other Information" %}</th>
+                    <td colspan="3">{{ medical_record.other_information}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Treatment Facilities" %}</th>
+                    <td>{{ medical_record.treatment_facilities}}</td>
+                    <th>{% translate "Doctors Names" %}</th>
+                    <td>{{ medical_record.doctors_names }}</td>
+                </tr>
+            {% endfor %}
+        </table>
         {% for doc_url in doc_urls %}
             <div><img src="{{doc_url}}" /></div>
         {% endfor %}
