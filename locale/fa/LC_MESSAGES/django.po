@@ -404,7 +404,7 @@ msgid "Weight"
 msgstr "وزن"
 
 msgid "Drugs Abuse"
-msgstr "سابقه‌ مصرف موارد مخدر و مقدار آن"
+msgstr "سابقه‌ مصرف مواد مخدر و مقدار آن"
 
 msgid "Treatment Facilities"
 msgstr "محل انجام کارهای درمانی"
@@ -471,3 +471,18 @@ msgstr "توضیحات"
 
 msgid "Export Pdf"
 msgstr "خروجی pdf"
+
+msgid "Medical Record Form"
+msgstr "فرم وضعیت درمانی بیمار"
+
+msgid "Age"
+msgstr "سن بیمار"
+
+msgid "Creation Date"
+msgstr "تاریخ تکمیل فرم"
+
+msgid "Medical History"
+msgstr "پیشینه پزشکی"
+
+msgid "Current Status"
+msgstr "وضعیت فعلی و کیفیت زندگی بیمار"
