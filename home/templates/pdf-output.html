@@ -291,6 +291,29 @@
                 </tr>
             {% endfor %}
         </table>
+        <div>
+            <h4 style="text-align: center;">{% translate "Patient Drug Form"%}</h4>
+        </div>
+        <table>
+            <tr>
+                <th>{% translate "Patient Drug Name" %}</th>
+                <th>{% translate "Drug Brand" %}</th>
+                <th>{% translate "Usage Start" %}</th>
+                <th>{% translate "Usage Duration" %}</th>
+                <th>{% translate "Usage Instruction" %}</th>
+                <th>{% translate "Costs" %}</th>                    
+            </tr>
+            {% for patient_drug in  patient.patientdrug_set.all %}
+                <tr>
+                    <td>{{ patient_drug.generic_drug }}</td>
+                    <td>{{ patient_drug.drug_brand }}</td>
+                    <td>{{ patient_drug.usage_start }}</td>
+                    <td>{{ patient_drug.usage_duration }}</td>
+                    <td>{{ patient_drug.usage_instruction }}</td>
+                    <td>{{ patient_drug.costs }}</td>                    
+                </tr>
+            {% endfor %}
+        </table>            
         {% for doc_url in doc_urls %}
             <div><img src="{{doc_url}}" /></div>
         {% endfor %}

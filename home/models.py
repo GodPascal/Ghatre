@@ -279,16 +279,7 @@ class MedicalRecord(models.Model):
 
     class Meta:
         verbose_name = _('Medical Record')
-        verbose_name_plural = _('Medical Records')
-    
-    
-    
-    
-    
-
-    
-
-     
+        verbose_name_plural = _('Medical Records')     
 
 class GenericDrug(models.Model):
     name = models.CharField(max_length=255, verbose_name=_('Name'))
@@ -316,3 +307,20 @@ class DrugBrand(models.Model):
     class Meta:
         verbose_name = _('Drug Brand')
         verbose_name_plural = _('Drug Brands')
+
+class PatientDrug(models.Model):
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+    
+    patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
+    generic_drug = models.ForeignKey(GenericDrug, on_delete=models.CASCADE, verbose_name=_('Generic Drug'))
+    drug_brand = models.ForeignKey(DrugBrand, on_delete=models.CASCADE, verbose_name=_('Drug Brand'))
+    
+    usage_start = models.CharField(max_length=30, verbose_name=_('Usage Start'))
+    usage_duration = models.CharField(max_length=30, verbose_name=_('Usage Duration'))
+    usage_instruction = models.CharField(max_length=30, verbose_name=_('Usage Instruction'))
+    costs = models.IntegerField(null=True, blank=True, verbose_name=_('Costs'))
+
+    class Meta:
+        verbose_name = _('Patient Drug')
+        verbose_name_plural = _('Patient Drugs')

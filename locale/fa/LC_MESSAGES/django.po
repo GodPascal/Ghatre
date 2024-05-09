@@ -486,3 +486,27 @@ msgstr "پیشینه پزشکی"
 
 msgid "Current Status"
 msgstr "وضعیت فعلی و کیفیت زندگی بیمار"
+
+msgid "Usage Start"
+msgstr "شروع مصرف"
+
+msgid "Usage Duration"
+msgstr "طول دوره مصرف"
+
+msgid "Usage Instruction"
+msgstr "دستور مصرف"
+
+msgid "Costs"
+msgstr "هزینه"
+
+msgid "Patient Drug"
+msgstr "داروی بیمار"
+
+msgid "Patient Drugs"
+msgstr "داروهای بیمار"
+
+msgid "Patient Drug Form"
+msgstr "فرم مشخصات داروها"
+
+msgid "Patient Drug Name"
+msgstr "نام-شکل و دوز دارو"
