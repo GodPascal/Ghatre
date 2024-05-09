@@ -3,7 +3,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Document, MedicalRecord
+from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Document, MedicalRecord, PatientDrug
 from django.core import serializers
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -19,6 +19,9 @@ class OtherSupporterInline(admin.TabularInline):
 
 class DocumentInline(admin.TabularInline):
     model = Document
+
+class PatientDrugInline(admin.TabularInline):
+    model = PatientDrug
 
 class PatientCaseResource(resources.ModelResource):
     class Meta:
@@ -74,7 +77,8 @@ class PatientCaseAdmin(ImportExportModelAdmin):
     inlines = [
         RelativeInline,
         OtherSupporterInline,
-        DocumentInline
+        DocumentInline,
+        PatientDrugInline
     ]
     resource_classes = [PatientCaseResource]
     actions = [export_as_json, export_as_pdf]

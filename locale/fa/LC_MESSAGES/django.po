@@ -444,3 +444,21 @@ msgstr "داروی ژنریک"
 
 msgid "Brand Name"
 msgstr "نام برند"
+
+msgid "Usage Start"
+msgstr "شروع مصرف"
+
+msgid "Usage Duration"
+msgstr "طول دوره مصرف"
+
+msgid "Usage Instruction"
+msgstr "دستور مصرف"
+
+msgid "Costs"
+msgstr "هزینه"
+
+msgid "Patient Drug"
+msgstr "داروی بیمار"
+
+msgid "Patient Drugs"
+msgstr "داروهای بیمار"
