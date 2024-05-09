@@ -137,10 +137,12 @@ class PatientCase(models.Model):
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     first_name = models.CharField(max_length=255, verbose_name=_('First Name'))
     last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
+    father_name = models.CharField(max_length=255, verbose_name=_('Father Name'))
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name=_('Gender'))
     birthdate = models.DateField(verbose_name=_('Birthdate'))
     national_code = models.CharField(max_length=10, verbose_name=_('National Code'))
     nationality = models.CharField(max_length=10, choices=NATIONALITY_CHOICES, verbose_name=_('Nationality'))
+
 
     first_guardian_name = models.CharField(max_length=255, verbose_name=_('First Guardian Name'))
     first_guardian_national_code = models.CharField(max_length=10, blank=True, verbose_name=_('First Guardian National Code'))
@@ -265,7 +267,7 @@ class MedicalRecord(models.Model):
     routines_ability = models.CharField(blank=True, max_length=255, verbose_name=_('Routines Ability'))
     talking_and_swallowing = models.CharField(blank=True, max_length=255, verbose_name=_('Talking and Swallowing'))
     gatherings_attending = models.CharField(blank=True, max_length=255, verbose_name=_('Gatherings Attending'))
-    family_and_social = models.CharField(blank=True, max_length=255, verbose_name=_('ّFamily and Social'))
+    family_and_social = models.CharField(blank=True, max_length=255, verbose_name=_('Family and Social'))
     
     height = models.FloatField(null=True, blank=True, verbose_name=_('Height'))
     weight = models.FloatField(null=True, blank=True, verbose_name=_('Weight'))
