@@ -14,6 +14,11 @@ NATIONALITY_CHOICES = [
     ('other', _('Other')),
 ]
 
+GUARDIAN_STATUS_CHOICES = [
+    ('self', _('Self')),
+     ('other', _('Other'))
+]
+
 PROVINCES_OF_IRAN_CHOICES = [
     ('alborz', _('Alborz')),
     ('ardabil', _('Ardabil')),
@@ -52,15 +57,18 @@ PROVINCES_OF_IRAN_CHOICES = [
 MARITAL_STATUS_CHOICES = [
     ('single', _('Single')),
     ('married', _('Married')),
+    ('temp_married', _('Temp Married')),
     ('divorced', _('Divorced')),
     ('widowed', _('Widowed')),
+    ('separated', _('Separated'))
 ]
 
 SOCIAL_INSURANCE_TYPE_CHOICES = [
     ('health_insurance', _('Health Insurance')),
     ('social_security', _('Social Security')),
-    ('unemployment_insurance', _('Unemployment Insurance')),
-    ('retirement_pension', _('Retirement Pension')),
+    ('medical_services', _('Medical Services')),
+    ('armed_forces', _('Armed Forces')),
+    ('other', _('Other')),
     ('none', _('None')),
 ]
 
@@ -82,6 +90,8 @@ HOUSING_STATUS_CHOICES = [
     ('mortgaged_rental', 'استیجاری - رهن و اجاره'),
     ('endowment', 'اوقاف'),
     ('relatives', 'بستگان'),
+    ('janitor', 'سرایدار'),
+    ('other', _('Other'))
 ]
 
 DOCUMENT_TYPE_CHOICES = [
@@ -128,22 +138,42 @@ DISEASE_TYPE_CHOICES = [
 
 ]
 
+class BaseModel(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
 
-class PatientCase(models.Model):
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Creator'))
+    class Meta:
+        abstract = True  # This ensures that this model won't create a database table
 
+    def save_model(self, request, obj, form, change):
+        if not self.id:
+            # Only set the created_by field if the object is being created
+            self.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+    
+
+
+class PatientCase(BaseModel):
+    
     active = models.BooleanField(default=True, verbose_name=_('Active'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+
+    case_number = models.CharField(max_length=255, blank=True, verbose_name=_('Case Number')) 
+    refer_date = jmodels.jDateField(verbose_name=_('Refer Date'), blank=True, null=True)
+    case_completion_date = jmodels.jDateField(verbose_name=_('Case Completion Date'), blank=True, null=True)
     first_name = models.CharField(max_length=255, verbose_name=_('First Name'))
     last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
     father_name = models.CharField(max_length=255, verbose_name=_('Father Name'))
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name=_('Gender'))
-    birthdate = models.DateField(verbose_name=_('Birthdate'))
+    birthdate = jmodels.jDateField(verbose_name=_('Birthdate'))
     national_code = models.CharField(max_length=10, verbose_name=_('National Code'))
     nationality = models.CharField(max_length=10, choices=NATIONALITY_CHOICES, verbose_name=_('Nationality'))
+    referrer_name = models.CharField(max_length=255, verbose_name=_('Referrer Name'))
 
 
+
+    guardian_status = models.CharField(max_length=10, choices=GUARDIAN_STATUS_CHOICES, verbose_name=_('Guardian Status'))
     first_guardian_name = models.CharField(max_length=255, verbose_name=_('First Guardian Name'))
     first_guardian_national_code = models.CharField(max_length=10, blank=True, verbose_name=_('First Guardian National Code'))
     first_guardian_relation = models.CharField(max_length=255, verbose_name=_('First Guardian Relation'))
@@ -152,7 +182,6 @@ class PatientCase(models.Model):
     second_guardian_relation = models.CharField(max_length=255, blank=True, verbose_name=_('Second Guardian Relation'))
 
     social_insurance_type = models.CharField(max_length=255, choices=SOCIAL_INSURANCE_TYPE_CHOICES, verbose_name=_('Social Insurance Type'))
-    social_insurance_number = models.CharField(max_length=255, blank=True, verbose_name=_('Social Insurance Number'))
     social_insurance_description = models.TextField(blank=True, verbose_name=_('Social Insurance Description'))
 
     educational_status = models.CharField(max_length=20, choices=EDUCATIONAL_STATUS_CHOICES, verbose_name=_('Educational Status'))
@@ -161,7 +190,7 @@ class PatientCase(models.Model):
     private_insurance_name = models.TextField(blank=True, verbose_name=_('Private Insurance Name'))
     private_insurance_number = models.CharField(max_length=255, blank=True, verbose_name=_('Private Insurance Number'))
 
-    marital_status = models.CharField(max_length=10, choices=MARITAL_STATUS_CHOICES, verbose_name=_('Marital Status'))
+    marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS_CHOICES, verbose_name=_('Marital Status'))
     marital_status_description = models.TextField(blank=True, verbose_name=_('Marital Status Description'))
 
     housing_status = models.CharField(max_length=20, choices=HOUSING_STATUS_CHOICES, verbose_name=_('Housing Status'))
@@ -169,11 +198,12 @@ class PatientCase(models.Model):
     rent_amount = models.IntegerField(blank=True, null=True, verbose_name=_('Rent Amount'))
 
     has_job = models.BooleanField(null=True, verbose_name=_('Has Job'))
+    job_description = models.TextField(blank=True, verbose_name=_('Job Description'))
     monthly_income = models.IntegerField(verbose_name=_('Monthly Income'))
     subsidy = models.IntegerField(verbose_name=_('Subsidy'))
     family_monthly_expenses = models.IntegerField(verbose_name=_('Family Monthly Expenses'))
     amount_of_installment_or_debt = models.IntegerField(verbose_name=_('Amount of Installment or Debt'))
-    repayment_due_date = models.DateField(verbose_name=_('Repayment Due Date'))
+    repayment_due_date = jmodels.jDateField(verbose_name=_('Repayment Due Date'))
     income_expenses_description = models.TextField(blank=True, verbose_name=_('Income Expenses Description'))
     
     province_of_residence = models.CharField(max_length=30, choices=PROVINCES_OF_IRAN_CHOICES, blank=True, verbose_name=_('Province of Residence'))
@@ -210,7 +240,7 @@ class Relative(models.Model):
     last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
     relation = models.CharField(max_length=255, verbose_name=_('Relation'))
     year_of_birth = models.IntegerField(verbose_name=_('Year of Birth'))
-    marital_status = models.CharField(max_length=10, choices=MARITAL_STATUS_CHOICES, verbose_name=_('Marital Status'))
+    marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS_CHOICES, verbose_name=_('Marital Status'))
     occupation = models.CharField(max_length=255, verbose_name=_('Occupation'))
     monthly_income = models.IntegerField(verbose_name=_('Monthly Income'))
     health_status = models.CharField(max_length=255, verbose_name=_('Health Status'))
@@ -227,8 +257,8 @@ class OtherSupporter(models.Model):
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     name = models.CharField(max_length=255, verbose_name=_('Name'))
     support_amount = models.IntegerField(verbose_name=_('Support Amount'))
-    support_start = models.DateField(verbose_name=_('Support Start'))
-    support_end = models.DateField(verbose_name=_('Support End'))
+    support_start = jmodels.jDateField(verbose_name=_('Support Start'))
+    support_end = jmodels.jDateField(verbose_name=_('Support End'))
     other_information = models.TextField(blank=True, verbose_name=_('Other Information'))
 
     class Meta:

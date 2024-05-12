@@ -84,7 +84,7 @@ def export_as_pdf(modeladmin, request, queryset):
 
 @admin.register(PatientCase)
 class PatientCaseAdmin(ImportExportModelAdmin):
-    list_display = [field.name for field in PatientCase._meta.fields]
+    list_display = ['case_number', 'first_name', 'last_name']
     inlines = [
         RelativeInline,
         OtherSupporterInline,

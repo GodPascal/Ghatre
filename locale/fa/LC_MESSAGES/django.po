@@ -131,7 +131,10 @@ msgid "Single"
 msgstr "مجرد"
 
 msgid "Married"
-msgstr "متاهل"
+msgstr "متاهل دائم"
+
+msgid "Temp Married"
+msgstr "متاهل موقت"
 
 msgid "Divorced"
 msgstr "طلاق گرفته"
@@ -139,8 +142,11 @@ msgstr "طلاق گرفته"
 msgid "Widowed"
 msgstr "بیوه"
 
+msgid "Separated"
+msgstr "متارکه"
+
 msgid "Health Insurance"
-msgstr "بیمه درمانی"
+msgstr "سلامت ایرانیان"
 
 msgid "Social Security"
 msgstr "تامین اجتماعی"
@@ -203,7 +209,7 @@ msgid "Second Guardian Relation"
 msgstr "نسبت دومین سرپرست"
 
 msgid "Social Insurance Type"
-msgstr "نوع بیمه اجتماعی"
+msgstr "نوع بیمه پایه"
 
 msgid "Social Insurance Number"
 msgstr "شماره بیمه اجتماعی"
@@ -215,13 +221,13 @@ msgid "Educational Status"
 msgstr "وضعیت تحصیلی"
 
 msgid "Has Private Insurance"
-msgstr "دارای بیمه خصوصی"
+msgstr "دارای بیمه تکمیلی"
 
 msgid "Private Insurance Name"
-msgstr "نام بیمه خصوصی"
+msgstr "نام بیمه تکمیلی"
 
 msgid "Private Insurance Number"
-msgstr "شماره بیمه خصوصی"
+msgstr "شماره بیمه تکمیلی"
 
 msgid "Marital Status"
 msgstr "وضعیت تاهل"
@@ -233,13 +239,13 @@ msgid "Housing Status"
 msgstr "وضعیت مسکن"
 
 msgid "Deposit Amount"
-msgstr "مبلغ سپرده"
+msgstr "مبلغ رهن"
 
 msgid "Rent Amount"
 msgstr "مبلغ اجاره"
 
 msgid "Has Job"
-msgstr "دارای شغل"
+msgstr "وضعیت اشتغال"
 
 msgid "Monthly Income"
 msgstr "درآمد ماهانه"
@@ -284,10 +290,10 @@ msgid "Phone Number"
 msgstr "شماره تلفن"
 
 msgid "Representor"
-msgstr "نماینده"
+msgstr "نام فرد مراجعه کننده"
 
 msgid "Representor Relation"
-msgstr "نسبت نماینده"
+msgstr "نسبت فرد مراجعه کننده"
 
 msgid "Referrer Name"
 msgstr "نام معرف"
@@ -302,7 +308,7 @@ msgid "Patient Cases"
 msgstr "بیمارها"
 
 msgid "Relation"
-msgstr "رابطه"
+msgstr "نسبت"
 
 msgid "Year of Birth"
 msgstr "سال تولد"
@@ -510,3 +516,24 @@ msgstr "فرم مشخصات داروها"
 
 msgid "Patient Drug Name"
 msgstr "نام-شکل و دوز دارو"
+
+msgid "Refer Date"
+msgstr "تاریخ مراجعه"
+
+msgid "Self"
+msgstr "خود"
+
+msgid "Guardian Status"
+msgstr "وضعیت سرپرست"
+
+msgid "Medical Services"
+msgstr "خدمات درمانی"
+
+msgid "Armed Forces"
+msgstr "نیروهای مسلح"
+
+msgid "Job Description"
+msgstr "توضیح شغل"
+
+msgid "Case Completion Date"
+msgstr "تاریخ تکمیل پرونده"
