@@ -117,25 +117,47 @@ DOCUMENT_TYPE_CHOICES = [
 ]
 
 DISEASE_TYPE_CHOICES = [
-    ('Infectious and parasitic','عفونی و انگلی'),
-    ('Cancer and blood diseases','سرطان و بیماری های خونی'),
-    ('Safety system','سیستم ایمنی'),
-    ('Glands','غدد'),
-    ('Psychiatry','اعصاب و روان'),
-    ('Neurology','مغز و اعصاب'),
-    ('Eye disease','بیماری چشمی'),
-    ('Ear nose and throat','گوش و حلق و بینی'),
-    ('Cardiovascular','قلبی-عروقی'),
-    ('Respiratory','تنفسی'),
-    ('Digestive','گوارشی'),
-    ('Skin','پوستی'),
-    ('Musculoskeletal','عضلانی-اسکلتی'),
-    ('Kidney and genitourinary tract','کلیه و مجاری ادراری-تناسلی'),
-    ('Obstetrics and Gynecology','زنان و زایمان '),
-    ('Genetic and congenital','ژنتیکی و مادرزادی '),
-    ('Accidents','سوانح'),
+    ('infectious_and_parasitic','عفونی و انگلی'),
+    ('cancer_and_blood_diseases','سرطان و بیماری های خونی'),
+    ('safety_system','سیستم ایمنی'),
+    ('glands','غدد'),
+    ('psychiatry','اعصاب و روان'),
+    ('neurology','مغز و اعصاب'),
+    ('eye_disease','بیماری چشمی'),
+    ('ear_nose_throat','گوش و حلق و بینی'),
+    ('cardiovascular','قلبی-عروقی'),
+    ('respiratory','تنفسی'),
+    ('digestive','گوارشی'),
+    ('skin','پوستی'),
+    ('susculoskeletal','عضلانی-اسکلتی'),
+    ('kidney_genitourinary_tract','کلیه و مجاری ادراری-تناسلی'),
+    ('gynecology','زنان و زایمان '),
+    ('genetic','ژنتیکی و مادرزادی '),
+    ('accidents','سوانح'),
     ('other','سایر'),
 
+]
+
+DISEASE_STATUS_CHOICES = [
+    ('in_progress',_('Treatment In Progress')),
+    ('stopped',_('Treatment Stopped')),
+    ('cured',_('Cured')),    
+]
+
+PATIENT_DOCTOR_STATUS_CHOICES = [
+    ('active', _('Active')),
+    ('inactive', _('Inactive'))
+]
+
+PATIENT_DRUG_LIST_STATUS_CHOICES = [
+    ('single_prescription', _('Single Prescription')),
+    ('without_insurance', _('Without Insurance')),
+    ('other', _('Other'))
+]
+
+PATIENT_DRUG_STATUS_CHOICES = [
+    ('active', _('Active')),
+    ('inactive', _('Inactive'))
 ]
 
 class BaseModel(models.Model):
@@ -144,11 +166,6 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True  # This ensures that this model won't create a database table
 
-    def save_model(self, request, obj, form, change):
-        if not self.id:
-            # Only set the created_by field if the object is being created
-            self.created_by = request.user
-        super().save_model(request, obj, form, change)
 
     
 
@@ -276,17 +293,12 @@ class Document(models.Model):
         verbose_name = _('Document')
         verbose_name_plural = _('Documents')
 
-class MedicalRecord(models.Model):
+class MedicalRecord(BaseModel):
     patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
 
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Creator'))
-    disease_type = models.CharField(max_length=30, choices=DISEASE_TYPE_CHOICES, verbose_name=_('Disease Type'))
-    disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
-    second_disease_name = models.CharField(blank=True, max_length=255, verbose_name=_('Disease Name (2nd)'))
-    diagnosis_year = models.IntegerField(verbose_name=_('Diagnosis Year'))
-
+    
     diagnosis = models.TextField(blank=True, verbose_name=_('Diagnosis'))
     diagnosis_tests = models.TextField(blank=True, verbose_name=_('Diagnosis Tests'))
     drug_history = models.TextField(blank=True, verbose_name=_('Drug History'))
@@ -310,6 +322,21 @@ class MedicalRecord(models.Model):
     class Meta:
         verbose_name = _('Medical Record')
         verbose_name_plural = _('Medical Records')     
+
+class RelativeDisease(models.Model):
+    medical_record = models.ForeignKey(MedicalRecord, on_delete=models.CASCADE, verbose_name=_('Medical Record'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+
+    relation = models.CharField(max_length=255, verbose_name=_('Relation'))
+    disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
+    infection_age = models.IntegerField(verbose_name=_('Infection Age'))
+    current_health_status = models.CharField(max_length=255, verbose_name=_('Current Health Status'))
+
+    class Meta:
+        verbose_name = _('Relative Disease')
+        verbose_name_plural = _('Relative Diseases')
+
 
 class GenericDrug(models.Model):
     name = models.CharField(max_length=255, verbose_name=_('Name'))
@@ -338,11 +365,28 @@ class DrugBrand(models.Model):
         verbose_name = _('Drug Brand')
         verbose_name_plural = _('Drug Brands')
 
-class PatientDrug(models.Model):
+class DiseaseRecord(BaseModel):
+    patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))   
+
+    next_intake = models.CharField(max_length=100, blank=True, verbose_name=_('Next Intake'))
+    prescription_cost = models.IntegerField(null=True, blank=True, verbose_name=_('Prescription Cost'))
+    patient_claimed_cost = models.IntegerField(null=True, blank=True, verbose_name=_('Patient Claimed Cost'))
+    pharmacy = models.CharField(max_length=255, blank=True, verbose_name=_('Pharmacy'))
+    recipient = models.CharField(max_length=100, blank=True, verbose_name=_('Recipient'))
+    description = models.TextField(blank=True, verbose_name=_('Description'))
+
+    class Meta:
+        verbose_name = _('Disease Record')
+        verbose_name_plural = _('Disease Records')
+
+
+class PatientDrugRecord(models.Model):
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     
-    patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
+    disease_record = models.ForeignKey(DiseaseRecord, on_delete=models.CASCADE, verbose_name=_('Disease Record'))
     generic_drug = models.ForeignKey(GenericDrug, on_delete=models.CASCADE, verbose_name=_('Generic Drug'))
     drug_brand = models.ForeignKey(DrugBrand, on_delete=models.CASCADE, verbose_name=_('Drug Brand'))
     
@@ -350,7 +394,46 @@ class PatientDrug(models.Model):
     usage_duration = models.CharField(max_length=30, verbose_name=_('Usage Duration'))
     usage_instruction = models.CharField(max_length=30, verbose_name=_('Usage Instruction'))
     costs = models.IntegerField(null=True, blank=True, verbose_name=_('Costs'))
+    costs_without_insurance = models.IntegerField(null=True, blank=True, verbose_name=_('Costs Without Insurance'))
+    list_status = models.CharField(max_length=20, choices=PATIENT_DRUG_LIST_STATUS_CHOICES, verbose_name=_('List Status'))
+    help_needed = models.BooleanField(verbose_name=_('Help Needed'))
+    intake_intervals = models.CharField(max_length=100, verbose_name=_('Intake Intervals'))
+    status = models.CharField(max_length=20, choices=PATIENT_DRUG_STATUS_CHOICES, verbose_name=_('Status'))
+
 
     class Meta:
-        verbose_name = _('Patient Drug')
-        verbose_name_plural = _('Patient Drugs')
+        verbose_name = _('Patient Drug Record')
+        verbose_name_plural = _('Patient Drug Records')
+
+
+class PatientDisease(models.Model):
+    disease_record = models.ForeignKey(DiseaseRecord, on_delete=models.CASCADE, verbose_name=_('Disease Record'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))    
+
+    disease_type = models.CharField(max_length=30, choices=DISEASE_TYPE_CHOICES, verbose_name=_('Disease Type'))
+    disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
+    diagnosis_year = models.IntegerField(verbose_name=_('Diagnosis Year'))
+    status = models.CharField(max_length=20, choices=DISEASE_STATUS_CHOICES, verbose_name=_('Status'))
+
+    class Meta:
+        verbose_name = _('Patient Disease')
+        verbose_name_plural = _('Patient Diseases')
+
+class PatientDoctor(models.Model):
+    disease_record = models.ForeignKey(DiseaseRecord, on_delete=models.CASCADE, verbose_name=_('Disease Record'))
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))    
+
+    doctor_name = models.CharField(blank=True, max_length=255, verbose_name=_('Doctor Name'))
+    treatment_facilities = models.CharField(blank=True, max_length=255, verbose_name=_('Treatment Facilities'))
+    status = models.CharField(max_length=20, choices=PATIENT_DOCTOR_STATUS_CHOICES, verbose_name=_('Status'))
+
+    class Meta:
+        verbose_name = _('Patient Doctor')
+        verbose_name_plural = _('Patient Doctors')
+    
+    
+
+
+   

@@ -3,7 +3,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Document, MedicalRecord, PatientDrug
+from home.models import *
 from django.core import serializers
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -23,8 +23,6 @@ class OtherSupporterInline(admin.TabularInline):
 class DocumentInline(admin.TabularInline):
     model = Document
 
-class PatientDrugInline(admin.TabularInline):
-    model = PatientDrug
 
 class PatientCaseResource(resources.ModelResource):
     class Meta:
@@ -88,22 +86,37 @@ class PatientCaseAdmin(ImportExportModelAdmin):
     inlines = [
         RelativeInline,
         OtherSupporterInline,
-        DocumentInline,
-        PatientDrugInline
+        DocumentInline
     ]
+    
     resource_classes = [PatientCaseResource]
     actions = [export_as_pdf]
+
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
     
 
-
+class RelativeDiseaseInline(admin.TabularInline):
+    model = RelativeDisease
 
 
 @admin.register(MedicalRecord)
 class MedicalRecordAdmin(admin.ModelAdmin):
-    list_display = ['get_patient_name', 'disease_type', 'disease_name']
+    list_display = ['get_patient_name']
+    inlines = [RelativeDiseaseInline]
     @admin.display(description='Patient Name', ordering='patient__name')
     def get_patient_name(self, obj):
-        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)
+        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)    
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
 
 @admin.register(DrugBrand)
 class DrugBrandAdmin(admin.ModelAdmin):
@@ -114,3 +127,28 @@ class DrugBrandAdmin(admin.ModelAdmin):
 class GenericDrugAdmin(admin.ModelAdmin):
     list_display = [field.name for field in GenericDrug._meta.fields]
     inlines = []
+
+class PatientDiseaseInline(admin.TabularInline):
+    model = PatientDisease
+
+class PatientDoctorInline(admin.TabularInline):
+    model = PatientDoctor
+
+class PatientDrugRecordInline(admin.TabularInline):
+    model = PatientDrugRecord
+
+@admin.register(DiseaseRecord)
+class DiseaseRecordAdmin(admin.ModelAdmin):
+    list_display = ['get_patient_name']
+    inlines = [PatientDiseaseInline, PatientDoctorInline, PatientDrugRecordInline]
+    @admin.display(description='Patient Name', ordering='patient__name')
+    def get_patient_name(self, obj):
+        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)
+    
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
