@@ -4,20 +4,60 @@ The management panel for **Ghatre Charity**
 
 ## Development Guide
 
-- Create a Python virtual environment:
-  `python -m venv venv`
+- Python virtual environment (Optional)
 
-- Activate the venv:
-  `source venv/bin/activate`
+  - Create a Python virtual environment:
 
-- Deactivate the venv (run inside venv):
-  `deactivate`
+  ```bash
+   python -m venv venv
+  ```
 
-- Remove the venv (run inside venv):
-  `rm -rf venv`
+  - Activate the venv:
+
+  ```bash
+   source venv/bin/activate
+  ```
+
+  - Deactivate the venv:
+
+  ```bash
+   deactivate
+  ```
+
+  - Remove the venv:
+
+  ```bash
+   rm -rf venv
+  ```
 
 - Install project requirements:
-  `pip install -r requirements.txt`
+
+  ```bash
+   pip install -r requirements.txt
+  ```
 
 - Run app server:
-  `python manage.py runserver`
+
+  ```bash
+   python manage.py runserver
+  ```
+
+- Django migrations:
+
+  - Create migrations:
+
+  ```bash
+   python manage.py makemigrations
+  ```
+
+  - Apply migrations to the database:
+
+  ```bash
+   python manage.py migrate
+  ```
+
+- Create a superuser:
+
+  ```bash
+   python manage.py createsuperuser
+  ```
