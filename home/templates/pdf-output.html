@@ -213,7 +213,7 @@
             {% for medical_record in  patient.medicalrecord_set.all %}
                 <tr>
                     <th>{% translate "Operator Name" %}</th>
-                    <td>??</td>
+                    <td>{{medical_record.created_by}}</td>
                     <th>{% translate "Creation Date" %}</th>
                     <td>??</td>
                 </tr>
@@ -223,10 +223,7 @@
                     <th>{% translate "Diagnosis Year" %}</th>
                     <td>{{ medical_record.diagnosis_year }}</td>
                 </tr>
-                <tr>
-                    <th>{% translate "Disease Name" %}</th>
-                    <td colspan="3">{{ medical_record.disease_name}}</td>
-                </tr>
+               
                 <tr>
                     <th colspan="4" style="text-align: center;">{% translate "Medical History" %}</th>
                 </tr>
@@ -255,6 +252,23 @@
                     <td colspan="3">{{ medical_record.dietary_habits}}</td>
                 </tr> 
                 <tr>
+                    <th colspan="4" style="text-align: center;">{% translate "Family History" %}</th>
+                </tr>
+                <tr>
+                    <th>{% translate "Relation" %}</th>
+                    <th>{% translate "Disease Name" %}</th>
+                    <th>{% translate "Infection Age" %}</th>
+                    <th>{% translate "Current Health Status" %}</th>                    
+                </tr>
+                {% for relative_disease in medical_record.relativedisease_set.all %}
+                    <tr>
+                        <td>{{ relative_disease.relation }}</td>
+                        <td>{{ relative_disease.disease_name }}</td>
+                        <td>{{ relative_disease.infection_age }}</td>
+                        <td>{{ relative_disease.current_health_status }}</td>                        
+                    </tr>
+                {% endfor %}
+                <tr>
                     <th colspan="4" style="text-align: center;">{% translate "Current Status" %}</th>
                 </tr>
                 <tr>
@@ -282,38 +296,95 @@
                 <tr>
                     <th>{% translate "Other Information" %}</th>
                     <td colspan="3">{{ medical_record.other_information}}</td>
-                </tr>
-                <tr>
-                    <th>{% translate "Treatment Facilities" %}</th>
-                    <td>{{ medical_record.treatment_facilities}}</td>
-                    <th>{% translate "Doctors Names" %}</th>
-                    <td>{{ medical_record.doctors_names }}</td>
-                </tr>
+                </tr>                         
             {% endfor %}
         </table>
         <div>
             <h4 style="text-align: center;">{% translate "Patient Drug Form"%}</h4>
         </div>
-        <table>
-            <tr>
-                <th>{% translate "Patient Drug Name" %}</th>
-                <th>{% translate "Drug Brand" %}</th>
-                <th>{% translate "Usage Start" %}</th>
-                <th>{% translate "Usage Duration" %}</th>
-                <th>{% translate "Usage Instruction" %}</th>
-                <th>{% translate "Costs" %}</th>                    
-            </tr>
-            {% for patient_drug in  patient.patientdrug_set.all %}
+        {% for disease_record in  patient.diseaserecord_set.all %}
+            <table>
                 <tr>
-                    <td>{{ patient_drug.generic_drug }}</td>
-                    <td>{{ patient_drug.drug_brand }}</td>
-                    <td>{{ patient_drug.usage_start }}</td>
-                    <td>{{ patient_drug.usage_duration }}</td>
-                    <td>{{ patient_drug.usage_instruction }}</td>
-                    <td>{{ patient_drug.costs }}</td>                    
+                    <th>{% translate "Disease Type" %}</th>
+                    <th>{% translate "Disease Name" %}</th>
+                    <th>{% translate "Diagnosis Year" %}</th>
+                    <th>{% translate "Status" %}</th>                
                 </tr>
-            {% endfor %}
-        </table>            
+                {% for patient_disease in disease_record.patientdisease_set.all %}
+                    <tr>
+                        <td>{{patient_disease.get_disease_type_display}}</td>
+                        <td>{{patient_disease.disease_name}}</td>
+                        <td>{{patient_disease.diagnosis_year}}</td>
+                        <td>{{patient_disease.get_status_display}}</td>                        
+                    </tr>
+                {% endfor %}
+            </table>
+            <table>
+                <tr>
+                    <th>{% translate "Doctor Name" %}</th>
+                    <th>{% translate "Treatment Facilities" %}</th>
+                    <th>{% translate "Status" %}</th>
+                    <th>{% translate "Created At" %}</th>                
+                </tr>
+                {% for patient_doctor in disease_record.patientdoctor_set.all %}
+                    <tr>
+                        <td>{{patient_doctor.doctor_name}}</td>
+                        <td>{{patient_doctor.treatment_facilities}}</td>
+                        <td>{{patient_doctor.get_status_display}}</td>
+                        <td>{{patient_doctor.created_at}}</td>                        
+                    </tr>
+                {% endfor %}
+            </table>
+            <table>
+                <tr>
+                    <th>{% translate "Patient Drug Name" %}</th>
+                    <th>{% translate "Drug Brand" %}</th>
+                    <th>{% translate "Usage Start" %}</th>
+                    <th>{% translate "Usage Duration" %}</th>
+                    <th>{% translate "Usage Instruction" %}</th>
+                    <th>{% translate "Costs" %}</th>    
+                    <th>{% translate "Costs Without Insurance" %}</th>    
+                    <th>{% translate "List Status" %}</th>    
+                    <th>{% translate "Help Needed" %}</th>    
+                    <th>{% translate "Intake Intervals" %}</th>    
+                    <th>{% translate "Status" %}</th>                                        
+                </tr>
+                {% for patient_drug in  disease_record.patientdrugrecord_set.all %}
+                    <tr>
+                        <td>{{ patient_drug.generic_drug }}</td>
+                        <td>{{ patient_drug.drug_brand }}</td>
+                        <td>{{ patient_drug.usage_start }}</td>
+                        <td>{{ patient_drug.usage_duration }}</td>
+                        <td>{{ patient_drug.usage_instruction }}</td>
+                        <td>{{ patient_drug.costs }}</td>      
+                        <td>{{ patient_drug.costs_without_insurance }}</td>      
+                        <td>{{ patient_drug.get_list_status_display }}</td>      
+                        <td>{{ patient_drug.help_needed }}</td>      
+                        <td>{{ patient_drug.intake_intervals }}</td>      
+                        <td>{{ patient_drug.get_status_display }}</td>                    
+                    </tr>
+                {% endfor %}
+            </table> 
+            <table>
+                <tr>
+                    <th>{% translate "Next Intake" %}</th>
+                    <td>{{ disease_record.next_intake }}</td>
+                    <th>{% translate "Prescription Cost" %}</th>
+                    <td>{{ disease_record.prescription_cost }}</td>                    
+                </tr>
+                <tr>
+                    <th>{% translate "Patient Claimed Cost" %}</th>
+                    <td>{{ disease_record.patient_claimed_cost }}</td>
+                    <th>{% translate "Pharmacy" %}</th>
+                    <td>{{ disease_record.pharmacy }}</td>                    
+                </tr>
+                <tr>
+                    <th>{% translate "Description" %}</th>
+                    <td colspan="3">{{ disease_record.description }}</td>
+                </tr>
+            </table>           
+        {% endfor %}
+
         {% for doc_url in doc_urls %}
             <div><img src="{{doc_url}}" /></div>
         {% endfor %}

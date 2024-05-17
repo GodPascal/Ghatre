@@ -616,7 +616,8 @@ msgstr "تک نسخه‌ای"
 msgid "Without Insurance"
 msgstr "بدون بیمه"
 
-
+msgid "Family History"
+msgstr "سابقه بیماری مشابه در خانواده و بستگان"
 
 
 

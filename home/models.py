@@ -316,9 +316,7 @@ class MedicalRecord(BaseModel):
 
     drugs_abuse = models.CharField(blank=True, max_length=255, verbose_name=_('Drugs Abuse'))
     other_information = models.CharField(blank=True, max_length=255, verbose_name=_('Other Information'))
-    treatment_facilities = models.CharField(blank=True, max_length=255, verbose_name=_('Treatment Facilities'))
-    doctors_names = models.CharField(blank=True, max_length=255, verbose_name=_('Doctors Names'))
-
+    
     class Meta:
         verbose_name = _('Medical Record')
         verbose_name_plural = _('Medical Records')     
