@@ -49,7 +49,7 @@ def export_as_json(modeladmin, request, queryset):
     return response
 
 @admin.action(description=_('Export Pdf'))
-def export_as_pdf(modeladmin, request, queryset):
+def export_patient_as_pdf(modeladmin, request, queryset):
     # Initialize a list to store document URLs
     document_urls = []
     # Iterate through selected patients
@@ -62,6 +62,9 @@ def export_as_pdf(modeladmin, request, queryset):
     
     context = {'patients': queryset, 'doc_urls': document_urls}
     
+    return populate_pdf(context, 'pdf-output.html')
+
+def populate_pdf(context, template_name):
     font_config = FontConfiguration()
     css = CSS(string='''
               @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
@@ -72,7 +75,7 @@ def export_as_pdf(modeladmin, request, queryset):
                 font-family: Vazirmatn;
                 font-size: 12px;}''', font_config=font_config)
 
-    template = get_template('pdf-output.html')
+    template = get_template(template_name)
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
     result = HTML(string=html).write_pdf(response, stylesheets=[css], font_config=font_config)
@@ -90,7 +93,7 @@ class PatientCaseAdmin(ImportExportModelAdmin):
     ]
     
     resource_classes = [PatientCaseResource]
-    actions = [export_as_pdf]
+    actions = [export_patient_as_pdf]
 
     
     def save_model(self, request, obj, form, change):
@@ -103,6 +106,11 @@ class PatientCaseAdmin(ImportExportModelAdmin):
 class RelativeDiseaseInline(admin.TabularInline):
     model = RelativeDisease
 
+@admin.action(description=_('Export Pdf'))
+def export_medical_record_as_pdf(modeladmin, request, queryset):
+    context = {'medical_records': queryset}    
+    return populate_pdf(context, 'pdf-output-only-medical.html')
+
 
 @admin.register(MedicalRecord)
 class MedicalRecordAdmin(admin.ModelAdmin):
@@ -110,7 +118,9 @@ class MedicalRecordAdmin(admin.ModelAdmin):
     inlines = [RelativeDiseaseInline]
     @admin.display(description='Patient Name', ordering='patient__name')
     def get_patient_name(self, obj):
-        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)    
+        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)  
+
+    actions = [export_medical_record_as_pdf]  
     
     def save_model(self, request, obj, form, change):
         if not obj.id:
