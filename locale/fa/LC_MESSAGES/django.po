@@ -628,10 +628,7 @@ msgstr "درخواست کمک"
 msgid "Intake Intervals"
 msgstr "فواصل دریافت دارو"
 
-msgid "Status"
-msgstr "وضعیت"
-
-msgid "Patient Disease"
+    msgid "Patient Disease"
 msgstr "بیماری"
 
 msgid "Patient Diseases"

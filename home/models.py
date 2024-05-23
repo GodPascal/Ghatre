@@ -160,6 +160,22 @@ PATIENT_DRUG_STATUS_CHOICES = [
     ('inactive', _('Inactive'))
 ]
 
+DRAFT_TYPE_CHOICES = [
+    ('P', 'P'),
+    ('IT', 'IT')
+]
+
+DRAFT_STATUS_CHOICES = [
+    ('active', 'فعال'),
+    ('inactive', 'غیرفعال'),
+    ('pending', 'در انتظار'),
+]
+
+SUPPLIER_TYPE_CHOICES = [
+    ('pharmacy', 'داروخانه'),
+    ('factory', 'کارخانه')
+]
+
 class BaseModel(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
 
@@ -462,7 +478,7 @@ class PatientDrugRecord(models.Model):
         verbose_name_plural = _('Patient Drug')
 
 
-class PatientDisease(BaseModel):
+class PatientDisease(models.Model):
     disease_record = models.ForeignKey(DiseaseRecord, on_delete=models.CASCADE, verbose_name=_('Disease Record'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))    
@@ -476,7 +492,7 @@ class PatientDisease(BaseModel):
         verbose_name = _('Patient Disease')
         verbose_name_plural = _('Patient Diseases')
 
-class PatientDoctor(BaseModel):
+class PatientDoctor(models.Model):
     disease_record = models.ForeignKey(DiseaseRecord, on_delete=models.CASCADE, verbose_name=_('Disease Record'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))    
