@@ -328,9 +328,6 @@ msgstr "خویشاوندان"
 msgid "Name"
 msgstr "نام"
 
-msgid "Support Amount"
-msgstr "مبلغ حمایت"
-
 msgid "Support Start"
 msgstr "شروع حمایت"
 
@@ -450,6 +447,75 @@ msgstr "داروی ژنریک"
 
 msgid "Brand Name"
 msgstr "نام برند"
+
+msgid "Drafts"
+msgstr "حواله های دارو"
+
+msgid "Draft"
+msgstr "حواله دارو"
+
+msgid "Draft Type"
+msgstr "نوع حواله"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Drug Receive Date"
+msgstr "تاریخ دریافت دارو"
+
+msgid "Invoice Create Date"
+msgstr "تاریخ صدور فاکتور"
+
+msgid "Draft Create Date"
+msgstr "تاریخ صدور حواله"
+
+msgid "Draft Receive Date"
+msgstr "تاریخ دریافت حواله"
+
+msgid "Payment Date"
+msgstr "تاریخ پرداخت"
+
+msgid "Draft Supporters"
+msgstr "حامیان دیگر حواله"
+
+msgid "Draft Supporter"
+msgstr "حامی حواله"
+
+msgid "Supporter"
+msgstr "حامی"
+
+msgid "Support Amount"
+msgstr "مبلغ حمایتی (ریال)"
+
+msgid "Count"
+msgstr "تعداد"
+
+msgid "Draft Drug"
+msgstr "دارو"
+
+msgid "Draft Drugs"
+msgstr "داروهای حواله"
+
+msgid "Invoice Amount"
+msgstr "مبلغ فاکتور (ریال)"
+
+msgid "Cash Draft Amount"
+msgstr "حواله نقدی (ارزش ریالی)"
+
+msgid "Drug Draft Amount"
+msgstr "حواله دارویی (ارزش ریالی)"
+
+msgid "Patient Amount"
+msgstr "مبلغ پرداختی بیمار (ریال)"
+
+msgid "Insurance Amount"
+msgstr "مبلغ پرداختی بیمه (ریال)"
+
+msgid "Supplier Type"
+msgstr "تامین کننده"
+
+msgid "Supplier Name"
+msgstr "نام تامین کننده"
 
 msgid "Ghatre Title"
 msgstr "جمعیت خیریه حمایت دارویی قطره"
