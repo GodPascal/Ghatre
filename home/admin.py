@@ -3,7 +3,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Document, MedicalRecord
+from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Draft, DraftSupporter, DraftDrug, Document, MedicalRecord
 from django.core import serializers
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -99,3 +99,14 @@ class DrugBrandAdmin(admin.ModelAdmin):
 class GenericDrugAdmin(admin.ModelAdmin):
     list_display = [field.name for field in GenericDrug._meta.fields]
     inlines = []
+
+class DraftSupporterInline(admin.TabularInline):
+    model = DraftSupporter
+
+class DraftDrugInline(admin.TabularInline):
+    model = DraftDrug
+
+@admin.register(Draft)
+class DraftAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Draft._meta.fields]
+    inlines = [DraftDrugInline, DraftSupporterInline]
