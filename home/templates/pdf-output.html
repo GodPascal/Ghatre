@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    
     <title>مشخصات بیمار</title>
     <style>
         /* Add RTL styles */
         body {
-            direction: rtl;
+            direction: rtl;    
         }
         table {
             border-collapse: collapse;
@@ -31,24 +29,25 @@
 <body>
     {% for patient in patients %}
         <div>
-            <h2>مشخصات بیمار</h1>
+            <h3 style="text-align: center;">{% translate "Ghatre Title" %}</h3>
+            <h4 style="text-align: center;">{% translate "Patient Case Form"%}</h4>
         </div>
         <table>
             <tr>
-                <th>شماره پرونده</th>
-                <td>1054</td>
-                <th>تاریخ مراجعه</th>
-                <td>فلان روز</td>
-                <th>نام تکمیل کننده</th>
-                <td>فلانی</td>
+                <th>{% translate "Case Number" %}</th>
+                <td>???</td>
+                <th>{% translate "Service Date" %}</th>
+                <td>???</td>
+                <th>{% translate "Operator Name" %}</th>
+                <td>???</td>
             </tr>
             <tr>
                 <th>{% translate "First Name" %}</th>
                 <td>{{patient}}</td>
                 <th>{% translate "National Code" %}</th>
                 <td>{{patient.national_code}}</td>
-                <th>نام پدر</th>
-                <td>نداریم</td>
+                <th>{% translate "Father Name" %}</th>
+                <td>{{patient.father_name}}</td>
             </tr>
             <tr>
                 <th>{% translate "First Guardian Name" %}</th>
@@ -60,9 +59,9 @@
             </tr>
             <tr>
                 <th>{% translate "Nationality" %}</th>
-                <td>{{patient.nationality}}</td>
+                <td>{{patient.get_nationality_display}}</td>
                 <th>{% translate "Gender" %}</th>
-                <td>{{patient.gender}}</td>
+                <td>{{patient.get_gender_display}}</td>
                 <th>{% translate "Referrer Name" %}</th>
                 <td>{{patient.referrer_name}}</td>
             </tr>
@@ -70,13 +69,13 @@
                 <th>{% translate "Birthdate" %}</th>
                 <td>{{patient.birthdate}}</td>
                 <th>{% translate "Educational Status" %}</th>
-                <td>{{patient.educational_status}}</td>
+                <td>{{patient.get_educational_status_display}}</td>
                 <th>{% translate "Description" %}</th>
                 <td></td>
             </tr>
             <tr>
                 <th>{% translate "Social Insurance Type" %}</th>
-                <td>{{patient.social_insurance_type}}</td>
+                <td>{{patient.get_social_insurance_type_display}}</td>
                 <th>{% translate "Social Insurance Number" %}</th>
                 <td>{{patient.social_insurance_number}}</td>
                 <th>{% translate "Social Insurance Description" %}</th>
@@ -92,13 +91,13 @@
             </tr>
             <tr>
                 <th>{% translate "Marital Status" %}</th>
-                <td>{{patient.marital_status}}</td>
+                <td>{{patient.get_marital_status_display}}</td>
                 <th>{% translate "Marital Status Description" %}</th>
                 <td colspan="3">{{patient.marital_status_description}}</td>
             </tr>
             <tr>
                 <th>{% translate "Housing Status" %}</th>
-                <td>{{patient.housing_status}}</td>
+                <td>{{patient.get_housing_status_display}}</td>
                 <th>{% translate "Deposit Amount" %}</th>
                 <td>{{patient.deposit_amount}}</td>
                 <th>{% translate "Rent Amount" %}</th>
@@ -171,7 +170,7 @@
             {% endfor %}
         </table>
         <div>
-            <h2>فرم مشخصات خانوادگی بیمار</h1>
+            <h4 style="text-align: center;">{% translate "Relative Form"%}</h4>
         </div>
         <table>
             <tr>
@@ -188,7 +187,7 @@
                     <td>{{relative.first_name}} {{relative.last_name}}</td>
                     <td>{{relative.relation}}</td>
                     <td>{{relative.year_of_birth}}</td>
-                    <td>{{relative.marital_status}}</td>
+                    <td>{{relative.get_marital_status_display}}</td>
                     <td>{{relative.occupation}}</td>
                     <td>{{relative.monthly_income}}</td>
                     <td>{{relative.health_status}}</td>                    
@@ -207,6 +206,114 @@
                 <td colspan="7">{{patient.helper_comment}}</td>
             </tr>
         </table>
+        <div>
+            <h4 style="text-align: center;">{% translate "Medical Record Form"%}</h4>
+        </div>
+        <table>
+            {% for medical_record in  patient.medicalrecord_set.all %}
+                <tr>
+                    <th>{% translate "Operator Name" %}</th>
+                    <td>??</td>
+                    <th>{% translate "Creation Date" %}</th>
+                    <td>??</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Age" %}</th>
+                    <td>{{ patient.birthdate}}</td>
+                    <th>{% translate "Diagnosis Year" %}</th>
+                    <td>{{ medical_record.diagnosis_year }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Disease Name" %}</th>
+                    <td colspan="3">{{ medical_record.disease_name}}</td>
+                </tr>
+                <tr>
+                    <th colspan="4" style="text-align: center;">{% translate "Medical History" %}</th>
+                </tr>
+                <tr>
+                    <th>{% translate "Diagnosis" %}</th>
+                    <td colspan="3">{{ medical_record.diagnosis}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Diagnosis Tests" %}</th>
+                    <td colspan="3">{{ medical_record.diagnosis_tests}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Drug History" %}</th>
+                    <td colspan="3">{{ medical_record.drug_history}}</td>
+                </tr> 
+                <tr>
+                    <th>{% translate "Surgery History" %}</th>
+                    <td colspan="3">{{ medical_record.surgery_history}}</td>
+                </tr> 
+                <tr>
+                    <th>{% translate "Other Diseases" %}</th>
+                    <td colspan="3">{{ medical_record.other_diseases}}</td>
+                </tr> 
+                <tr>
+                    <th>{% translate "Dietary Habits" %}</th>
+                    <td colspan="3">{{ medical_record.dietary_habits}}</td>
+                </tr> 
+                <tr>
+                    <th colspan="4" style="text-align: center;">{% translate "Current Status" %}</th>
+                </tr>
+                <tr>
+                    <th>{% translate "Movement Ability" %}</th>
+                    <td>{{ medical_record.movement_ability}}</td>
+                    <th>{% translate "Routines Ability" %}</th>
+                    <td>{{ medical_record.routines_ability }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Talking and Swallowing" %}</th>
+                    <td>{{ medical_record.talking_and_swallowing}}</td>
+                    <th>{% translate "Gatherings Attending" %}</th>
+                    <td>{{ medical_record.gatherings_attending }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Family and Social" %}</th>
+                    <td>{{ medical_record.family_and_social}}</td>
+                    <th>{% translate "Height" %}-{% translate "Weight" %}</th>
+                    <td>{{ medical_record.height }}-{{ medical_record.weight }}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Drugs Abuse" %}</th>
+                    <td colspan="3">{{ medical_record.drugs_abuse}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Other Information" %}</th>
+                    <td colspan="3">{{ medical_record.other_information}}</td>
+                </tr>
+                <tr>
+                    <th>{% translate "Treatment Facilities" %}</th>
+                    <td>{{ medical_record.treatment_facilities}}</td>
+                    <th>{% translate "Doctors Names" %}</th>
+                    <td>{{ medical_record.doctors_names }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div>
+            <h4 style="text-align: center;">{% translate "Patient Drug Form"%}</h4>
+        </div>
+        <table>
+            <tr>
+                <th>{% translate "Patient Drug Name" %}</th>
+                <th>{% translate "Drug Brand" %}</th>
+                <th>{% translate "Usage Start" %}</th>
+                <th>{% translate "Usage Duration" %}</th>
+                <th>{% translate "Usage Instruction" %}</th>
+                <th>{% translate "Costs" %}</th>                    
+            </tr>
+            {% for patient_drug in  patient.patientdrug_set.all %}
+                <tr>
+                    <td>{{ patient_drug.generic_drug }}</td>
+                    <td>{{ patient_drug.drug_brand }}</td>
+                    <td>{{ patient_drug.usage_start }}</td>
+                    <td>{{ patient_drug.usage_duration }}</td>
+                    <td>{{ patient_drug.usage_instruction }}</td>
+                    <td>{{ patient_drug.costs }}</td>                    
+                </tr>
+            {% endfor %}
+        </table>            
         {% for doc_url in doc_urls %}
             <div><img src="{{doc_url}}" /></div>
         {% endfor %}

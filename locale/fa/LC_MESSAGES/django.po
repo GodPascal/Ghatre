@@ -401,7 +401,7 @@ msgid "Weight"
 msgstr "وزن"
 
 msgid "Drugs Abuse"
-msgstr "سابقه‌ مصرف موارد مخدر و مقدار آن"
+msgstr "سابقه‌ مصرف مواد مخدر و مقدار آن"
 
 msgid "Treatment Facilities"
 msgstr "محل انجام کارهای درمانی"
@@ -510,3 +510,69 @@ msgstr "تامین کننده"
 
 msgid "Supplier Name"
 msgstr "نام تامین کننده"
+
+msgid "Ghatre Title"
+msgstr "جمعیت خیریه حمایت دارویی قطره"
+
+msgid "Patient Case Form"
+msgstr "فرم مشخصات بیمار"
+
+msgid "Relative Form"
+msgstr "فرم مشخصات خانوادگی بیمار"
+
+msgid "Case Number"
+msgstr "شماره پرونده"
+
+msgid "Service Date"
+msgstr "تاریخ مراجعه"
+
+msgid "Operator Name"
+msgstr "نام تکمیل کننده"
+
+msgid "Father Name"
+msgstr "نام پدر"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Export Pdf"
+msgstr "خروجی pdf"
+
+msgid "Medical Record Form"
+msgstr "فرم وضعیت درمانی بیمار"
+
+msgid "Age"
+msgstr "سن بیمار"
+
+msgid "Creation Date"
+msgstr "تاریخ تکمیل فرم"
+
+msgid "Medical History"
+msgstr "پیشینه پزشکی"
+
+msgid "Current Status"
+msgstr "وضعیت فعلی و کیفیت زندگی بیمار"
+
+msgid "Usage Start"
+msgstr "شروع مصرف"
+
+msgid "Usage Duration"
+msgstr "طول دوره مصرف"
+
+msgid "Usage Instruction"
+msgstr "دستور مصرف"
+
+msgid "Costs"
+msgstr "هزینه"
+
+msgid "Patient Drug"
+msgstr "داروی بیمار"
+
+msgid "Patient Drugs"
+msgstr "داروهای بیمار"
+
+msgid "Patient Drug Form"
+msgstr "فرم مشخصات داروها"
+
+msgid "Patient Drug Name"
+msgstr "نام-شکل و دوز دارو"

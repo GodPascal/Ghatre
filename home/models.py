@@ -196,10 +196,12 @@ class PatientCase(models.Model):
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     first_name = models.CharField(max_length=255, verbose_name=_('First Name'))
     last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
+    father_name = models.CharField(max_length=255, verbose_name=_('Father Name'))
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name=_('Gender'))
     birthdate = models.DateField(verbose_name=_('Birthdate'))
     national_code = models.CharField(max_length=10, verbose_name=_('National Code'))
     nationality = models.CharField(max_length=10, choices=NATIONALITY_CHOICES, verbose_name=_('Nationality'))
+
 
     first_guardian_name = models.CharField(max_length=255, verbose_name=_('First Guardian Name'))
     first_guardian_national_code = models.CharField(max_length=10, blank=True, verbose_name=_('First Guardian National Code'))
@@ -327,7 +329,7 @@ class MedicalRecord(models.Model):
     routines_ability = models.CharField(blank=True, max_length=255, verbose_name=_('Routines Ability'))
     talking_and_swallowing = models.CharField(blank=True, max_length=255, verbose_name=_('Talking and Swallowing'))
     gatherings_attending = models.CharField(blank=True, max_length=255, verbose_name=_('Gatherings Attending'))
-    family_and_social = models.CharField(blank=True, max_length=255, verbose_name=_('ّFamily and Social'))
+    family_and_social = models.CharField(blank=True, max_length=255, verbose_name=_('Family and Social'))
     
     height = models.FloatField(null=True, blank=True, verbose_name=_('Height'))
     weight = models.FloatField(null=True, blank=True, verbose_name=_('Weight'))
@@ -339,16 +341,7 @@ class MedicalRecord(models.Model):
 
     class Meta:
         verbose_name = _('Medical Record')
-        verbose_name_plural = _('Medical Records')
-    
-    
-    
-    
-    
-
-    
-
-     
+        verbose_name_plural = _('Medical Records')     
 
 class GenericDrug(models.Model):
     name = models.CharField(max_length=255, verbose_name=_('Name'))
@@ -426,3 +419,21 @@ class DraftDrug(models.Model):
     class Meta:
         verbose_name = _('Draft Drug')
         verbose_name_plural = _('Draft Drugs')
+
+
+class PatientDrug(models.Model):
+    created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+    
+    patient_case = models.ForeignKey(PatientCase, on_delete=models.CASCADE, verbose_name=_('Patient Case'))
+    generic_drug = models.ForeignKey(GenericDrug, on_delete=models.CASCADE, verbose_name=_('Generic Drug'))
+    drug_brand = models.ForeignKey(DrugBrand, on_delete=models.CASCADE, verbose_name=_('Drug Brand'))
+    
+    usage_start = models.CharField(max_length=30, verbose_name=_('Usage Start'))
+    usage_duration = models.CharField(max_length=30, verbose_name=_('Usage Duration'))
+    usage_instruction = models.CharField(max_length=30, verbose_name=_('Usage Instruction'))
+    costs = models.IntegerField(null=True, blank=True, verbose_name=_('Costs'))
+
+    class Meta:
+        verbose_name = _('Patient Drug')
+        verbose_name_plural = _('Patient Drugs')
