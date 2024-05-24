@@ -628,7 +628,7 @@ msgstr "درخواست کمک"
 msgid "Intake Intervals"
 msgstr "فواصل دریافت دارو"
 
-    msgid "Patient Disease"
+msgid "Patient Disease"
 msgstr "بیماری"
 
 msgid "Patient Diseases"
@@ -682,5 +682,35 @@ msgstr "بدون بیمه"
 msgid "Family History"
 msgstr "سابقه بیماری مشابه در خانواده و بستگان"
 
+msgid "Contact Location"
+msgstr "نوع ارتباط"
 
+msgid "Drugs Cost"
+msgstr "هزینه دارو (ریال)"
 
+msgid "Treatment Program"
+msgstr "رژیم درمانی"
+
+msgid "Contact Description"
+msgstr "توضیحات تماس"
+
+msgid "Has Social Insurance"
+msgstr "بیمه پایه"
+
+msgid "Last Action"
+msgstr "توضیح آخرین اقدام"
+
+msgid "Last Action Date"
+msgstr "تاریخ آخرین اقدام"
+
+msgid "Input Log"
+msgstr "فهرست ورودی"
+
+msgid "Input Logs"
+msgstr "فهرست ورودی"
+
+msgid "Reception"
+msgstr "پذیرش"
+
+msgid "Waiting"
+msgstr "در انتظار"
