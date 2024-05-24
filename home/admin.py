@@ -3,7 +3,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from home.models import PatientCase, Relative, OtherSupporter, GenericDrug, DrugBrand, Draft, DraftSupporter, DraftDrug, Document, MedicalRecord, PatientDrug
+from home.models import *
 from django.core import serializers
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -23,8 +23,6 @@ class OtherSupporterInline(admin.TabularInline):
 class DocumentInline(admin.TabularInline):
     model = Document
 
-class PatientDrugInline(admin.TabularInline):
-    model = PatientDrug
 
 class PatientCaseResource(resources.ModelResource):
     class Meta:
@@ -51,7 +49,7 @@ def export_as_json(modeladmin, request, queryset):
     return response
 
 @admin.action(description=_('Export Pdf'))
-def export_as_pdf(modeladmin, request, queryset):
+def export_patient_as_pdf(modeladmin, request, queryset):
     # Initialize a list to store document URLs
     document_urls = []
     # Iterate through selected patients
@@ -64,6 +62,9 @@ def export_as_pdf(modeladmin, request, queryset):
     
     context = {'patients': queryset, 'doc_urls': document_urls}
     
+    return populate_pdf(context, 'pdf-output.html')
+
+def populate_pdf(context, template_name):
     font_config = FontConfiguration()
     css = CSS(string='''
               @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
@@ -74,7 +75,7 @@ def export_as_pdf(modeladmin, request, queryset):
                 font-family: Vazirmatn;
                 font-size: 12px;}''', font_config=font_config)
 
-    template = get_template('pdf-output.html')
+    template = get_template(template_name)
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
     result = HTML(string=html).write_pdf(response, stylesheets=[css], font_config=font_config)
@@ -84,26 +85,48 @@ def export_as_pdf(modeladmin, request, queryset):
 
 @admin.register(PatientCase)
 class PatientCaseAdmin(ImportExportModelAdmin):
-    list_display = [field.name for field in PatientCase._meta.fields]
+    list_display = ['case_number', 'first_name', 'last_name']
     inlines = [
         RelativeInline,
         OtherSupporterInline,
-        DocumentInline,
-        PatientDrugInline
+        DocumentInline
     ]
+    
     resource_classes = [PatientCaseResource]
-    actions = [export_as_pdf]
+    actions = [export_patient_as_pdf]
+
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
     
 
+class RelativeDiseaseInline(admin.TabularInline):
+    model = RelativeDisease
 
+@admin.action(description=_('Export Pdf'))
+def export_medical_record_as_pdf(modeladmin, request, queryset):
+    context = {'medical_records': queryset}    
+    return populate_pdf(context, 'pdf-output-only-medical.html')
 
 
 @admin.register(MedicalRecord)
 class MedicalRecordAdmin(admin.ModelAdmin):
-    list_display = ['get_patient_name', 'disease_type', 'disease_name']
+    list_display = ['get_patient_name']
+    inlines = [RelativeDiseaseInline]
     @admin.display(description='Patient Name', ordering='patient__name')
     def get_patient_name(self, obj):
-        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)
+        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)  
+
+    actions = [export_medical_record_as_pdf]  
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
 
 @admin.register(DrugBrand)
 class DrugBrandAdmin(admin.ModelAdmin):
@@ -115,6 +138,32 @@ class GenericDrugAdmin(admin.ModelAdmin):
     list_display = [field.name for field in GenericDrug._meta.fields]
     inlines = []
 
+class PatientDiseaseInline(admin.TabularInline):
+    model = PatientDisease
+
+class PatientDoctorInline(admin.TabularInline):
+    model = PatientDoctor
+
+class PatientDrugRecordInline(admin.TabularInline):
+    model = PatientDrugRecord
+
+@admin.register(DiseaseRecord)
+class DiseaseRecordAdmin(admin.ModelAdmin):
+    list_display = ['get_patient_name']
+    inlines = [PatientDiseaseInline, PatientDoctorInline, PatientDrugRecordInline]
+    @admin.display(description='Patient Name', ordering='patient__name')
+    def get_patient_name(self, obj):
+        return '%s %s' % (obj.patient_case.first_name, obj.patient_case.last_name)
+    
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+
+
 class DraftSupporterInline(admin.TabularInline):
     model = DraftSupporter
 
@@ -125,3 +174,13 @@ class DraftDrugInline(admin.TabularInline):
 class DraftAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Draft._meta.fields]
     inlines = [DraftDrugInline, DraftSupporterInline]
+
+@admin.register(InputLog)
+class InputLogAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'phone_number']
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            # Only set the created_by field if the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+    
