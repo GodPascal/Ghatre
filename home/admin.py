@@ -85,7 +85,8 @@ def populate_pdf(context, template_name):
 
 @admin.register(PatientCase)
 class PatientCaseAdmin(ImportExportModelAdmin):
-    list_display = ['case_number', 'first_name', 'last_name']
+    list_display = ['pk', 'case_number', 'first_name', 'last_name' , 'national_code', 'mobile_number']
+    search_fields = ['first_name', 'last_name', 'national_code', 'mobile_number']
     inlines = [
         RelativeInline,
         OtherSupporterInline,
@@ -178,6 +179,8 @@ class DraftAdmin(admin.ModelAdmin):
 @admin.register(InputLog)
 class InputLogAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'phone_number']
+    search_fields = ['first_name', 'last_name', 'phone_number']
+    list_filter = ['status']
     def save_model(self, request, obj, form, change):
         if not obj.id:
             # Only set the created_by field if the object is being created
