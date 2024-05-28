@@ -181,6 +181,12 @@ INPUT_LOG_STATUS_CHOICES = [
     ('waiting', _('Waiting'))
 ]
 
+PATIENT_CASE_STATUS_CHOICES = [
+    ('active', _('Active')),
+    ('inactive', _('Inactive')),
+    ('waiting', _('Waiting')),
+    ('semi-active', _('Semi Active'))
+]
 class BaseModel(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
 
@@ -196,7 +202,7 @@ class BaseModel(models.Model):
 
 class PatientCase(BaseModel):
     
-    active = models.BooleanField(default=True, verbose_name=_('Active'))
+    status = models.CharField(max_length=20, choices=PATIENT_CASE_STATUS_CHOICES, verbose_name=_('Status'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
 
@@ -228,8 +234,8 @@ class PatientCase(BaseModel):
     educational_status = models.CharField(max_length=20, choices=EDUCATIONAL_STATUS_CHOICES, verbose_name=_('Educational Status'))
 
     has_private_insurance = models.BooleanField(verbose_name=_('Has Private Insurance'))
-    private_insurance_name = models.TextField(blank=True, verbose_name=_('Private Insurance Name'))
-    private_insurance_number = models.CharField(max_length=255, blank=True, verbose_name=_('Private Insurance Number'))
+    private_insurance_name = models.CharField(max_length=255, blank=True, verbose_name=_('Private Insurance Name'))
+    private_insurance_description = models.TextField(blank=True, verbose_name=_('Private Insurance Description'))
 
     marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS_CHOICES, verbose_name=_('Marital Status'))
     marital_status_description = models.TextField(blank=True, verbose_name=_('Marital Status Description'))
@@ -257,8 +263,7 @@ class PatientCase(BaseModel):
     representor = models.CharField(max_length=255, verbose_name=_('Representor'))
     representor_relation = models.CharField(max_length=255, verbose_name=_('Representor Relation'))
     
-    referrer_name = models.CharField(max_length=255, verbose_name=_('Referrer Name'))
-
+    
     other_information = models.TextField(blank=True, verbose_name=_('Other Information'))
 
     patient_problem = models.TextField(blank=True, verbose_name=_('Patient Problem'))

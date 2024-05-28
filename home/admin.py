@@ -10,6 +10,7 @@ from django.template.loader import get_template
 from weasyprint import HTML, CSS
 from weasyprint.text.fonts import FontConfiguration
 from django.utils.translation import gettext_lazy as _
+import jdatetime
 
 
 
@@ -87,6 +88,7 @@ def populate_pdf(context, template_name):
 class PatientCaseAdmin(ImportExportModelAdmin):
     list_display = ['pk', 'case_number', 'first_name', 'last_name' , 'national_code', 'mobile_number']
     search_fields = ['first_name', 'last_name', 'national_code', 'mobile_number']
+    list_filter = ['status']
     inlines = [
         RelativeInline,
         OtherSupporterInline,
@@ -101,6 +103,10 @@ class PatientCaseAdmin(ImportExportModelAdmin):
         if not obj.id:
             # Only set the created_by field if the object is being created
             obj.created_by = request.user
+        if not obj.case_number:
+            current_year = jdatetime.datetime.now().year
+            obj.case_number = '%s-%s' % (obj.id, current_year) 
+
         super().save_model(request, obj, form, change)
     
 
