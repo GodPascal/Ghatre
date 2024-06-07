@@ -209,25 +209,25 @@ msgid "Second Guardian Relation"
 msgstr "نسبت دومین سرپرست"
 
 msgid "Social Insurance Type"
-msgstr "نوع بیمه پایه"
+msgstr "نوع بیمهٔ پایه"
 
 msgid "Social Insurance Number"
-msgstr "شماره بیمه اجتماعی"
+msgstr "شمارهٔ بیمهٔ اجتماعی"
 
 msgid "Social Insurance Description"
-msgstr "توضیحات بیمه اجتماعی"
+msgstr "توضیح بیمهٔ پایه"
 
 msgid "Educational Status"
 msgstr "وضعیت تحصیلی"
 
 msgid "Has Private Insurance"
-msgstr "دارای بیمه تکمیلی"
+msgstr "دارای بیمهٔ تکمیلی"
 
 msgid "Private Insurance Name"
-msgstr "نام بیمه تکمیلی"
+msgstr "نام بیمهٔ تکمیلی"
 
-msgid "Private Insurance Number"
-msgstr "شماره بیمه تکمیلی"
+msgid "Private Insurance Description"
+msgstr "توضیح بیمهٔ تکمیلی"
 
 msgid "Marital Status"
 msgstr "وضعیت تاهل"
@@ -720,3 +720,6 @@ msgstr "بیماران"
 
 msgid "Home"
 msgstr "خانه"
+
+msgid "Semi Active"
+msgstr "نیمه فعال"

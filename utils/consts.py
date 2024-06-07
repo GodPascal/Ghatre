@@ -176,3 +176,10 @@ INPUT_LOG_STATUS_CHOICES = [
   ('reception', _('Reception')),
   ('waiting', _('Waiting'))
 ]
+
+PATIENT_CASE_STATUS_CHOICES = [
+    ('active', _('Active')),
+    ('inactive', _('Inactive')),
+    ('waiting', _('Waiting')),
+    ('semi-active', _('Semi Active'))
+]
