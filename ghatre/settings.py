@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_jalali',
     'home',
+    'drugs',
+    'drafts',
+    'medical_records',
+    'patients',
     'import_export'
 ]
 

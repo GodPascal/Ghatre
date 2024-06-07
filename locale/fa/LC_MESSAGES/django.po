@@ -302,10 +302,10 @@ msgid "Other Information"
 msgstr "سایر اطلاعات"
 
 msgid "Patient Case"
-msgstr "بیمار"
+msgstr "پروندهٔ بیمار"
 
 msgid "Patient Cases"
-msgstr "بیمارها"
+msgstr "پرونده‌های بیماران"
 
 msgid "Relation"
 msgstr "نسبت"
@@ -714,3 +714,9 @@ msgstr "پذیرش"
 
 msgid "Waiting"
 msgstr "در انتظار"
+
+msgid "Patients"
+msgstr "بیماران"
+
+msgid "Home"
+msgstr "خانه"
