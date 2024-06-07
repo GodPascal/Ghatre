@@ -6,11 +6,11 @@ from django_jalali.db import models as jmodels
 from home.models import BaseModel
 from utils.consts import GENDER_CHOICES, NATIONALITY_CHOICES, GUARDIAN_STATUS_CHOICES, SOCIAL_INSURANCE_TYPE_CHOICES, \
     EDUCATIONAL_STATUS_CHOICES, MARITAL_STATUS_CHOICES, HOUSING_STATUS_CHOICES, PROVINCES_OF_IRAN_CHOICES, \
-    DOCUMENT_TYPE_CHOICES
+    DOCUMENT_TYPE_CHOICES, PATIENT_CASE_STATUS_CHOICES
 
 
 class PatientCase(BaseModel):
-    active = models.BooleanField(default=True, verbose_name=_('Active'))
+    status = models.CharField(max_length=20, choices=PATIENT_CASE_STATUS_CHOICES, verbose_name=_('Status'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
 
@@ -45,8 +45,8 @@ class PatientCase(BaseModel):
                                           verbose_name=_('Educational Status'))
 
     has_private_insurance = models.BooleanField(verbose_name=_('Has Private Insurance'))
-    private_insurance_name = models.TextField(blank=True, verbose_name=_('Private Insurance Name'))
-    private_insurance_number = models.CharField(max_length=255, blank=True, verbose_name=_('Private Insurance Number'))
+    private_insurance_name = models.CharField(max_length=255, blank=True, verbose_name=_('Private Insurance Name'))
+    private_insurance_description = models.TextField(blank=True, verbose_name=_('Private Insurance Description'))
 
     marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS_CHOICES, verbose_name=_('Marital Status'))
     marital_status_description = models.TextField(blank=True, verbose_name=_('Marital Status Description'))
@@ -74,9 +74,7 @@ class PatientCase(BaseModel):
 
     representor = models.CharField(max_length=255, verbose_name=_('Representor'))
     representor_relation = models.CharField(max_length=255, verbose_name=_('Representor Relation'))
-
-    referrer_name = models.CharField(max_length=255, verbose_name=_('Referrer Name'))
-
+    
     other_information = models.TextField(blank=True, verbose_name=_('Other Information'))
 
     patient_problem = models.TextField(blank=True, verbose_name=_('Patient Problem'))
