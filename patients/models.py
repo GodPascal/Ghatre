@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
+from private_storage.fields import PrivateFileField
 
 from home.models import BaseModel
 from utils.consts import GENDER_CHOICES, NATIONALITY_CHOICES, GUARDIAN_STATUS_CHOICES, SOCIAL_INSURANCE_TYPE_CHOICES, \
@@ -128,7 +129,7 @@ class Document(models.Model):
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     type = models.CharField(max_length=30, choices=DOCUMENT_TYPE_CHOICES, verbose_name=_('Type'))
-    uploaded_file = models.FileField(upload_to='documents/', verbose_name=_('File'))
+    uploaded_file = PrivateFileField(upload_to='documents/', verbose_name=_('File'))
 
     class Meta:
         verbose_name = _('Document')
