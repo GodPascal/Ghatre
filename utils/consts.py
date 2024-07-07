@@ -183,3 +183,35 @@ PATIENT_CASE_STATUS_CHOICES = [
     ('waiting', _('Waiting')),
     ('semi-active', _('Semi Active'))
 ]
+
+DESCRIPTION_OF_THE_LAST_ACTION = [
+    ('interview_appointment_set', 'تنظیم قرار مصاحبه'),
+    ('file_created', 'تشکیل پرونده'),
+    ('under_review', 'در حال بررسی'),
+    ('referred', 'ارجاع'),
+    ('waiting_foreign_single_dose', 'در انتظار- تک نسخه ای خارجی'),
+    ('waiting_domestic_single_dose', 'در انتظار- تک نسخه ای داخلی'),
+    ('waiting_expensive', 'در انتظار- گران قیمت'),
+    ('waiting_foreign_nationals', 'در انتظار - اتباع'),
+    ('no_response', 'عدم پاسخگویی'),
+    ('patient_did_not_create_file', 'عدم مراجعه بیمار برای تشکیل پرونده'),
+    ('resident_of_city', 'ساکن شهرستان'),
+    ('covered_by_other_charities', 'پوشش سایر خیریه ها'),
+    ('covered_by_basic_insurance', 'پوشش بیمه پایه'),
+    ('covered_by_supplementary_insurance', 'پوشش بیمه تکمیلی'),
+    ('no_drug_needed', 'عدم نیاز دارویی'),
+    ('financial_aid_requested', 'درخواست کمک مالی'),
+    ('treatment_completed', 'اتمام دوره درمان'),
+    ('patient_unwilling_to_follow_up', 'عدم تمایل و پیگیری بیمار'),
+    ('drug_equipment_requested', 'درخواست تجهیزات دارویی'),
+    ('drug_regimen_changed', 'تغییر رژیم دارویی'),
+    ('no_contract_pharmacy', 'عدم داروخانه طرف قرارداد'),
+    ('deceased', 'فوت'),
+    ('other', 'سایر')]
+INPUT_DRAFT_STATUS_CHOICES = [
+    ('identified', 'شناسایی شده'),
+    ('evaluated', 'ارزیابی شده'),
+    ('accepted', 'پذیرش'),
+    ('rejected', 'عدم پذیرش'),
+    ('waiting', 'در انتظار')
+]
