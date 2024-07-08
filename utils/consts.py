@@ -231,3 +231,9 @@ CONTACT_LOCATION_CHOICES = [
     ('yazd_office', _('Yazd Office')),
     ('prescription_approval_office', _('Prescription Approval Office'))
 ]
+
+COMPLETION_CASE_CHOICES = [
+    ('complete', _('Complete')),
+    ('waiting_for_insurance ', _('Waiting for Insurance')),
+    ('document_defects', _('Document Defects'))
+]

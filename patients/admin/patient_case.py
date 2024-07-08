@@ -6,20 +6,42 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 from patients.models import Relative, OtherSupporter, Document, SupportProgram, \
-    PatientCase, LivelihoodAssessment, ApplicationSupport, PatientHelperHistory
+    PatientCase, LivelihoodAssessment, ApplicationSupport, PatientHelperHistory, CaseCompletionHistory
+from utils.generic_functions import national_code_validator
 from utils.export_helpers import export_patient_as_pdf
 
 
 class DocumentInline(admin.TabularInline):
     classes = ['collapse']
     model = Document
-    extra = 1
+    extra = 0
+
+
+class CaseCompletionHistoryInline(admin.TabularInline):
+    classes = ['collapse']
+    model = CaseCompletionHistory
+    readonly_fields = ['created_at_display', 'creator']
+    extra = 0
+
+    @admin.display(description=_('Creator'))
+    def creator(self, instance):
+        return instance.created_by.get_full_name() or instance.created_by.username
+
+    @admin.display(description=_('Created Date Display'))
+    def created_at_display(self, instance):
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class RelativeInline(admin.StackedInline):
     classes = ['collapse']
     model = Relative
-    extra = 1
+    extra = 0
 
 
 class LivelihoodAssessmentInline(admin.StackedInline):
@@ -36,11 +58,11 @@ class LivelihoodAssessmentInline(admin.StackedInline):
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
     @admin.display(description=_('Drugs Cost'))
     def drugs_cost(self, instance):
@@ -50,7 +72,7 @@ class LivelihoodAssessmentInline(admin.StackedInline):
 class ApplicationSupportInline(admin.StackedInline):
     classes = ['collapse']
     model = ApplicationSupport
-    fields = ['multiple_receive', 'first_intake_date', 'prescription_cost', 'help_intervals',
+    fields = ['is_active', 'multiple_receive', 'first_intake_date', 'prescription_cost', 'help_intervals',
               'supplier_pharmacy', 'description']
     readonly_fields = []
     extra = 1
@@ -59,7 +81,7 @@ class ApplicationSupportInline(admin.StackedInline):
 class OtherSupporterInline(admin.TabularInline):
     classes = ['collapse']
     model = OtherSupporter
-    extra = 1
+    extra = 0
 
 
 class PatientHelperHistoryInline(admin.TabularInline):
@@ -67,20 +89,20 @@ class PatientHelperHistoryInline(admin.TabularInline):
     model = PatientHelperHistory
     fields = ['patient_description', 'creator', 'created_at_display']
     readonly_fields = ['creator', 'created_at_display']
-    extra = 1
+    extra = 0
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
 
 class SupportProgramForm(forms.ModelForm):
     def clean_percentage(self):
-        if 0 <= self.cleaned_data['percentage'] <= 100:
+        if self.cleaned_data['percentage'] <= 100:
             return self.cleaned_data['percentage']
 
         raise forms.ValidationError(
@@ -91,12 +113,18 @@ class SupportProgramInline(admin.StackedInline):
     classes = ['collapse']
     model = SupportProgram
     form = SupportProgramForm
-    fields = ['percentage', 'amount', 'intervals', 'count',
-              'end_date', 'support_program', 'program_type', 'service_pharmacy',
-              'drug_delivery_type', 'status']
+    fields = ['total_other_support', 'percentage', 'amount', 'intervals', 'count',
+              'end_date', 'support_program', 'program_type', 'patient_final_payment',
+              'service_pharmacy', 'drug_delivery_type', 'status']
+    readonly_fields = ['total_other_support', 'patient_final_payment']
     extra = 1
 
+    @admin.display(description=_('Patient Final Payment'))
+    def patient_final_payment(self, instance):
+        return instance.patient_case.patient_final_payment - instance.total_other_support
 
+
+import re
 class PatientCaseForm(forms.ModelForm):
     def clean_home_number(self):
         if self.cleaned_data['home_number'].isdigit():
@@ -111,15 +139,42 @@ class PatientCaseForm(forms.ModelForm):
 
         raise forms.ValidationError(
             _('Number should only contain digits.'))
+    
+    def clean_national_code(self):
+        if national_code_validator(self.cleaned_data['national_code']):
+            return self.cleaned_data['national_code']
+        
+        raise forms.ValidationError(
+            _('Enter a valid national code.'))
+    
+    def clean_first_guardian_national_code(self) -> bool:
+        if not self.cleaned_data['first_guardian_national_code']:
+            return self.cleaned_data['first_guardian_national_code']
+        
+        elif national_code_validator(self.cleaned_data['first_guardian_national_code']):
+            return self.cleaned_data['first_guardian_national_code']
+        
+        raise forms.ValidationError(
+            _('Enter a valid national code.'))
+    
+    def clean_second_guardian_national_code(self) -> bool:
+        if not self.cleaned_data['second_guardian_national_code']:
+            return self.cleaned_data['second_guardian_national_code']
+        
+        elif national_code_validator(self.cleaned_data['second_guardian_national_code']):
+            return self.cleaned_data['second_guardian_national_code']
+        
+        raise forms.ValidationError(
+            _('Enter a valid national code.'))
 
 
 @admin.register(PatientCase)
 class PatientCaseAdmin(ImportExportModelAdmin):
     form = PatientCaseForm
-    list_display = ['pk', 'case_number', 'first_name',
+    list_display = ['case_number', 'first_name',
                     'last_name', 'national_code', 'phone_number']
-    search_fields = ['first_name', 'last_name',
-                     'national_code', 'phone_number']
+    search_fields = ['patient__first_name', 'patient__last_name',
+                     'national_code', 'patient__phone_number', 'case_number']
     fields = ['patient', 'status', 'case_number', 'service_date', 'case_completion_date', 'creator', 'referrer_name',
               'father_name', 'gender', 'birthdate', 'national_code', 'nationality', 'guardian_status', 'first_guardian_name',
               'first_guardian_national_code', 'first_guardian_relation', 'second_guardian_name', 'second_guardian_national_code',
@@ -133,8 +188,10 @@ class PatientCaseAdmin(ImportExportModelAdmin):
     readonly_fields = ['creator', 'created_at_display', 'phone_number', 'service_date', 'referrer_name', 'case_number',
                        'has_social_insurance', 'has_private_insurance', 'province_of_residence', 'city_of_residence', ]
     list_filter = ['status']
+    raw_id_fields = ['patient']
     inlines = [
         DocumentInline,
+        CaseCompletionHistoryInline,
         RelativeInline,
         LivelihoodAssessmentInline,
         ApplicationSupportInline,
@@ -147,11 +204,11 @@ class PatientCaseAdmin(ImportExportModelAdmin):
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
     @admin.display(description=_('Service Date'))
     def service_date(self, instance):
@@ -184,8 +241,11 @@ class PatientCaseAdmin(ImportExportModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.id:
             obj.created_by = request.user
-            current_year = jdatetime.datetime.now().year
-            obj.case_number = '%s-%s' % (obj.id, current_year)
+
+        super().save_model(request, obj, form, change)
+
+        if not obj.case_number:
+            obj.case_number = '%s-%s' % (obj.id, jdatetime.datetime.now().year)
 
         super().save_model(request, obj, form, change)
 

@@ -30,21 +30,16 @@ class InputLog(BaseModel):
     contact_location = models.CharField(max_length=50, choices=CONTACT_LOCATION_CHOICES, verbose_name=_('Contact Location'))
     disease_type = models.CharField(max_length=30, choices=DISEASE_TYPE_CHOICES, verbose_name=_('Disease Type'))
     disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
-    drugs_cost = models.IntegerField(verbose_name=_('Drugs Cost'))
-    province_of_residence = models.CharField(max_length=30, choices=PROVINCES_OF_IRAN_CHOICES, blank=True,
-                                             verbose_name=_('Province of Residence'))
-    city_of_residence = models.CharField(max_length=255, blank=True, verbose_name=_('City of Residence'))
-    referrer_name = models.CharField(max_length=255, blank=True, verbose_name=_('Referrer Name'))
-    age = models.PositiveIntegerField(verbose_name=_('Age'))
+    drugs_cost = models.PositiveIntegerField(verbose_name=_('Drugs Cost'))
+    province_of_residence = models.CharField(max_length=30, choices=PROVINCES_OF_IRAN_CHOICES, verbose_name=_('Province of Residence'))
+    city_of_residence = models.CharField(max_length=255, verbose_name=_('City of Residence'))
+    referrer_name = models.CharField(max_length=255, verbose_name=_('Referrer Name'))
+    age = models.PositiveIntegerField(verbose_name=_('Age'), null=True, blank=True)
     contact_description = models.TextField(blank=True, verbose_name=_('Contact Description'))
     has_social_insurance = models.BooleanField(verbose_name=_('Has Social Insurance'))
     has_private_insurance = models.BooleanField(verbose_name=_('Has Private Insurance'))
-    status = models.CharField(max_length=30, choices=INPUT_LOG_STATUS_CHOICES, verbose_name=_('Status'))
-    last_action_date = jmodels.jDateField(blank=True, null=True, verbose_name=_('Last Action Date'))
-    description = models.TextField(blank=True, verbose_name=_('Description'))
-    service_date = jmodels.jDateField(blank=True, null=True, verbose_name=_('Service Date'))
+    service_date = jmodels.jDateField(verbose_name=_('Service Date'))
 
-    last_action = models.TextField(max_length=255, blank=True, verbose_name=_('Last Action'))
     class Meta:
         verbose_name = _('Input Log')
         verbose_name_plural = _('Input Logs')
@@ -57,3 +52,23 @@ class InputLog(BaseModel):
         return self.pk
     
     entry_list_number.fget.short_description = _('Entry List Number')
+
+
+
+class InputLogHistory(BaseModel):
+    patient = models.ForeignKey(InputLog, on_delete=models.CASCADE, verbose_name=_('Patient'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created At'))
+    modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
+    
+    status = models.CharField(max_length=30, choices=INPUT_LOG_STATUS_CHOICES, verbose_name=_('Status'))
+    last_action = models.TextField(max_length=255, blank=True, verbose_name=_('Last Action'))
+    description = models.TextField(verbose_name=_('Description'))
+
+
+    class Meta:
+        verbose_name = _('Input Log History')
+        verbose_name_plural = _('Input Log Histories')
+
+
+    def __str__(self) -> str:
+        return f'{self.pk}'

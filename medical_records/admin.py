@@ -109,11 +109,11 @@ class MedicalRecordInlineAdmin(admin.StackedInline):
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
 
 class TreatmentPlanInline(admin.TabularInline):
@@ -125,23 +125,23 @@ class TreatmentPlanInline(admin.TabularInline):
 
     @admin.display(description=_('Pharmacist Name'))
     def pharmacist_name(self, instance):
-        return f"{instance.pharmacist.first_name or ''}  {instance.pharmacist.last_name or ''}".strip() or instance.pharmacist.username
+        return instance.pharmacist.get_full_name() or instance.pharmacist.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
 
 class CurrentPatientStateInline(admin.StackedInline):
     model = CurrentPatientState
     classes = ['collapse']
-    fields = ['patient_case', 'patient_state', 'current_symptom', 'main_treatment_process', 'other_description',
-              'creator', 'created_at_display']
+    fields = ['patient_case', 'patient_state', 'current_symptom', 'main_treatment_process',
+              'other_description', 'creator', 'created_at_display']
     readonly_fields = ['creator', 'created_at_display']
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
@@ -151,12 +151,15 @@ class CurrentPatientStateInline(admin.StackedInline):
 @admin.register(MedicalRecord)
 class MedicalRecordAdmin(admin.ModelAdmin):
     raw_id_fields = ['patient_case']
-    list_display = ['get_patient_name']
-    fields = ['patient_case', 'creator', 'created_at_display', 'gender', 'birthdate', 'diagnosis', 'diagnosis_tests', 'drug_history',
+    list_display = ['get_patient_name', 'created_at_display']
+    fields = ['patient_case', 'creator', 'created_at_display', 'gender', 'birthdate',
+              'diagnosis', 'diagnosis_tests', 'drug_history',
               'surgery_history', 'dietary_habits', 'movement_ability', 'routines_ability',
               'talking_and_swallowing', 'gatherings_attending', 'family_and_social',
               'height', 'weight', 'drugs_abuse', 'other_information']
     readonly_fields = ['creator', 'created_at_display', 'gender', 'birthdate']
+    search_fields = ['patient_case__patient__first_name', 'patient_case__patient__last_name',
+                     'patient_case__case_number']
     inlines = [RelativeDiseaseInline]
 
     @admin.display(description=_('Patient Name'), ordering='patient_case__case_number')
@@ -165,7 +168,7 @@ class MedicalRecordAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Gender'))
     def gender(self, instance):
@@ -177,7 +180,7 @@ class MedicalRecordAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
     actions = [export_medical_record_as_pdf]
 
@@ -190,10 +193,10 @@ class MedicalRecordAdmin(admin.ModelAdmin):
 
 @admin.register(DiseaseRecord)
 class DiseaseRecordAdmin(admin.ModelAdmin):
-    list_display = ['id', 'case_number',
+    list_display = ['case_number',
                     'first_name', 'last_name', 'phone_number']
-    search_fields = ['patient__first_name',
-                     'patient__last_name', 'patient__phone_number']
+    search_fields = ['patient__first_name', 'patient__last_name',
+                     'patient__phone_number', 'case_number']
     fields = ['patient', 'phone_number', 'status', 'case_number']
     readonly_fields = ['patient', 'phone_number', 'status', 'case_number']
     inlines = [PatientDiseaseInline,
@@ -209,7 +212,7 @@ class PatientChartAdmin(admin.ModelAdmin):
                PatientDoctorInline,
                CurrentPatientStateInline,
                TreatmentPlanInline]
-    list_display = ['id', 'case_number',
+    list_display = ['case_number',
                     'first_name', 'last_name', 'phone_number']
     search_fields = ['patient__first_name', 'patient__last_name',
                      'patient__phone_number',  'case_number']
@@ -232,8 +235,8 @@ class TreatmentPlanAdmin(admin.ModelAdmin):
               'pharmacist_name', 'treatment_follow', 'status']
     readonly_fields = ['created_at_display', 'pharmacist_name']
     raw_id_fields = ['patient_case', 'pharmacist']
-    search_fields = ['patient_case__patient__first_name',
-                     'patient_case__patient__last_name']
+    search_fields = ['patient_case__patient__first_name', 'patient_case__patient__last_name',
+                     'patient_case__case_number']
     list_display = ['patient_case', 'created_at_display']
 
     @admin.display(description=_('Pharmacist Name'))
@@ -242,26 +245,26 @@ class TreatmentPlanAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
 
 @admin.register(CurrentPatientState)
 class CurrentPatientStateAdmin(admin.ModelAdmin):
-    fields = ['patient_case', 'patient_state', 'current_symptom', 'main_treatment_process', 'other_description',
-              'creator', 'created_at_display']
+    fields = ['patient_case', 'patient_state', 'current_symptom', 'main_treatment_process',
+              'other_description', 'creator', 'created_at_display']
     readonly_fields = ['creator', 'created_at_display']
     raw_id_fields = ['patient_case']
-    search_fields = ['patient_case__patient__first_name',
-                     'patient_case__patient__last_name']
+    search_fields = ['patient_case__patient__first_name', 'patient_case__patient__last_name',
+                     'patient_case__case_number']
     list_display = ['patient_case', 'created_at_display']
 
     @admin.display(description=_('Creator'))
     def creator(self, instance):
-        return f"{instance.created_by.first_name or ''}  {instance.created_by.last_name or ''}".strip() or instance.created_by.username
+        return instance.created_by.get_full_name() or instance.created_by.username
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
     def save_model(self, request, obj, form, change):
         if not obj.id:
