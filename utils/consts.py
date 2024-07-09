@@ -63,10 +63,18 @@ MARITAL_STATUS_CHOICES = [
 SOCIAL_INSURANCE_TYPE_CHOICES = [
   ('health_insurance', _('Health Insurance')),
   ('social_security', _('Social Security')),
+  ('villagers_and_nomads', _('Villagers and Nomads')),
+  ('government_employees', _('Government Employees')),
+  ('special_diseases', _('Special Diseases')),
+  ('other_layers', _('Other Layers')),
   ('medical_services', _('Medical Services')),
   ('armed_forces', _('Armed Forces')),
+  ('foreigners_social_security', _('Foreigners-Health')),
+  ('foreigners_health', _('Foreigners-Social Security')),
   ('other', _('Other')),
   ('none', _('None')),
+  ('foreigners_none', _('Foreigners-None')),
+  ('baloch_none', _('Baloch-None')),
 ]
 
 EDUCATIONAL_STATUS_CHOICES = [
@@ -88,6 +96,9 @@ HOUSING_STATUS_CHOICES = [
   ('endowment', 'اوقاف'),
   ('relatives', 'بستگان'),
   ('janitor', 'سرایدار'),
+  ('parents_house', _('Parents House')),
+  ('child_house', _('Child House')),
+  ('relative_house', _('Relative House')),
   ('other', _('Other'))
 ]
 
@@ -174,7 +185,10 @@ SUPPLIER_TYPE_CHOICES = [
 
 INPUT_LOG_STATUS_CHOICES = [
   ('reception', _('Reception')),
-  ('waiting', _('Waiting'))
+  ('waiting', _('Waiting')),
+  ('rejection', _('Rejection')),
+  ('detected', _('Detected')),
+  ('reviewed', _('Reviewed'))
 ]
 
 PATIENT_CASE_STATUS_CHOICES = [
@@ -183,6 +197,41 @@ PATIENT_CASE_STATUS_CHOICES = [
     ('waiting', _('Waiting')),
     ('semi-active', _('Semi Active'))
 ]
+
+RECIPIENT_CHOICES = [
+    ('patient', _('Patient')),
+    ('companion', _('Companion'))
+]
+
+INTERVAL_CHOICES = [
+    ('two_weeks', _('Two Weeks')),
+    ('three_weeks', _('Three Weeks')),
+    ('monthly', _('Monthly')),
+    ('two_months', _('Two_Months')),
+    ('three_months', _('Three_Months')), 
+    ('six_months', _('Six_Months')), 
+]
+
+SUPPORT_PROGRAM_CHOICES = [
+    ('one_time_payment', _('One Time Payment')),
+    ('supervisor_approval', _('Supervisor Approval')),
+    ('program', _('Program'))
+]
+
+DELIVERY_TYPE_CHOICES = [
+    ('self', _('Self')),
+    ('send', _('Send'))
+]
+
+CONTACT_LOCATION_CHOICES = [
+    ('office_call', _('Office Call')),
+    ('novatel_call', _('Novatel Call')),
+    ('13_aban_office', _('13 Aban Office')),
+    ('university_office', _('University Office')),
+    ('yazd_office', _('Yazd Office')),
+    ('prescription_approval_office', _('Prescription Approval Office'))
+]
+
 
 DESCRIPTION_OF_THE_LAST_ACTION = [
     ('interview_appointment_set', 'تنظیم قرار مصاحبه'),

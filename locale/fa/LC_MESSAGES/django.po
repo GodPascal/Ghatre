@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-24 23:41+0000\n"
+"POT-Creation-Date: 2024-07-03 13:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,685 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: home/models.py:7
+
+msgid "Drafts"
+msgstr "حواله های دارو"
+
+msgid "Creator"
+msgstr "ایجاد کننده"
+
+msgid "Created At"
+msgstr "ایجاد شده در"
+
+msgid "Modified At"
+msgstr "ویرایش شده در"
+
+msgid "Patient Case"
+msgstr "پروندهٔ بیمار"
+
+msgid "Draft Type"
+msgstr "نوع حواله"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Draft Create Date"
+msgstr "تاریخ صدور حواله"
+
+msgid "Draft Receive Date"
+msgstr "تاریخ دریافت حواله"
+
+msgid "Drug Receive Date"
+msgstr "تاریخ دریافت دارو"
+
+msgid "Invoice Create Date"
+msgstr "تاریخ صدور فاکتور"
+
+msgid "Payment Date"
+msgstr "تاریخ پرداخت"
+
+msgid "Invoice Amount"
+msgstr "مبلغ فاکتور (ریال)"
+
+msgid "Cash Draft Amount"
+msgstr "حواله نقدی (ارزش ریالی)"
+
+msgid "Drug Draft Amount"
+msgstr "حواله دارویی (ارزش ریالی)"
+
+msgid "Patient Amount"
+msgstr "مبلغ پرداختی بیمار (ریال)"
+
+msgid "Insurance Amount"
+msgstr "مبلغ پرداختی بیمه (ریال)"
+
+msgid "Supplier Type"
+msgstr "تامین کننده"
+
+msgid "Supplier Name"
+msgstr "نام تامین کننده"
+
+msgid "Draft"
+msgstr "حواله دارو"
+
+msgid "Supporter"
+msgstr "حامی"
+
+msgid "Support Amount"
+msgstr "مبلغ حمایتی (ریال)"
+
+msgid "Draft Supporter"
+msgstr "حامی حواله"
+
+msgid "Draft Supporters"
+msgstr "حامیان دیگر حواله"
+
+msgid "Generic Drug"
+msgstr "داروی ژنریک"
+
+msgid "Drug Brand"
+msgstr "برند دارو"
+
+msgid "Count"
+msgstr "تعداد"
+
+msgid "Draft Drug"
+msgstr "دارو"
+
+msgid "Draft Drugs"
+msgstr "داروهای حواله"
+
+msgid "Drugs"
+msgstr "دارو ها"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Generic Drugs"
+msgstr "داروهای ژنریک"
+
+msgid "Brand Name"
+msgstr "نام برند"
+
+msgid "Country"
+msgstr "کشور"
+
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "Drug Brands"
+msgstr "برند های دارو"
+
+msgid "Number should only contain digits."
+msgstr "شماره باید تنها شامل عدد باشد."
+
+msgid "Cost Display"
+msgstr "هزینه(تومان)"
+
+msgid "Created Date Display"
+msgstr "ساخته شده در"
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "First Name"
+msgstr "نام"
+
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+msgid "Contact Location"
+msgstr "نوع ارتباط"
+
+msgid "Disease Type"
+msgstr "دسته بیماری"
+
+msgid "Disease Name"
+msgstr "نام بیماری"
+
+msgid "Drugs Cost"
+msgstr "هزینه دارو (ریال)"
+
+msgid "Province of Residence"
+msgstr "استان محل سکونت"
+
+msgid "City of Residence"
+msgstr "شهر محل سکونت"
+
+msgid "Referrer Name"
+msgstr "نام معرف"
+
+msgid "Age"
+msgstr "سن بیمار"
+
+msgid "Contact Description"
+msgstr "توضیحات تماس"
+
+msgid "Has Social Insurance"
+msgstr "بیمه پایه"
+
+msgid "Has Private Insurance"
+msgstr "دارای بیمهٔ تکمیلی"
+
+msgid "Last Action Date"
+msgstr "تاریخ آخرین اقدام"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Service Date"
+msgstr "تاریخ مراجعه"
+
+msgid "Last Action"
+msgstr "توضیح آخرین اقدام"
+
+msgid "Input Log"
+msgstr "فهرست ورودی"
+
+msgid "Input Logs"
+msgstr "فهرست ورودی"
+
+msgid "Entry List Number"
+msgstr "شماره فهرست ورودی"
+
+msgid "Ghatre Title"
+msgstr "جمعیت خیریه حمایت دارویی قطره"
+
+msgid "Case Number"
+msgstr "شماره پرونده"
+
+msgid "Operator Name"
+msgstr "نام تکمیل کننده"
+
+msgid "National Code"
+msgstr "کد ملی"
+
+msgid "Father Name"
+msgstr "نام پدر"
+
+msgid "Medical Record Form"
+msgstr "فرم وضعیت درمانی بیمار"
+
+msgid "Creation Date"
+msgstr "تاریخ تکمیل فرم"
+
+msgid "Diagnosis Year"
+msgstr "سال تشخیص"
+
+msgid "Medical History"
+msgstr "پیشینه پزشکی"
+
+msgid "Diagnosis"
+msgstr ""
+"نحوه تشخیص بیماری و کلیه اقدامات درمانی که برای بیمار انجام شده است را شرح "
+"دهید"
+
+msgid "Diagnosis Tests"
+msgstr "آزمایش‌های تشخیصی و زمان انجام"
+
+msgid "Drug History"
+msgstr "سابقه دارویی"
+
+msgid "Surgery History"
+msgstr "سابقه جراحی"
+
+msgid "Other Diseases"
+msgstr "سایر بیماری‌های زمینه‌ای"
+
+msgid "Dietary Habits"
+msgstr "وضعیت تغذیه‌ای"
+
+msgid "Family History"
+msgstr "سابقه بیماری مشابه در خانواده و بستگان"
+
+msgid "Relation"
+msgstr "نسبت"
+
+msgid "Infection Age"
+msgstr "سن ابتلا"
+
+msgid "Current Health Status"
+msgstr "وضعیت سلامتی فعلی"
+
+msgid "Current Status"
+msgstr "وضعیت فعلی و کیفیت زندگی بیمار"
+
+msgid "Movement Ability"
+msgstr "توانایی حرکتی"
+
+msgid "Routines Ability"
+msgstr "انجام کارهای شخصی"
+
+msgid "Talking and Swallowing"
+msgstr "حرف زدن و بلعیدن"
+
+msgid "Gatherings Attending"
+msgstr "حضور در مهمانی و دورهمی"
+
+msgid "Family and Social"
+msgstr "روابط خانوداگی و اجتماعی"
+
+msgid "Height"
+msgstr "قد"
+
+msgid "Weight"
+msgstr "وزن"
+
+msgid "Drugs Abuse"
+msgstr "سابقه‌ مصرف مواد مخدر و مقدار آن"
+
+msgid "Other Information"
+msgstr "سایر اطلاعات"
+
+msgid "Patient Drug Form"
+msgstr "فرم مشخصات داروها"
+
+msgid "Doctor Name"
+msgstr "پزشک معالج"
+
+msgid "Treatment Facilities"
+msgstr "محل انجام کارهای درمانی"
+
+msgid "Patient Drug Name"
+msgstr "نام-شکل و دوز دارو"
+
+msgid "Usage Start"
+msgstr "شروع مصرف"
+
+msgid "Usage Duration"
+msgstr "طول دوره مصرف"
+
+msgid "Usage Instruction"
+msgstr "دستور مصرف"
+
+msgid "Costs"
+msgstr "هزینه"
+
+msgid "Costs Without Insurance"
+msgstr "هزینه با احتساب کسر از بیمه"
+
+msgid "List Status"
+msgstr "وضعیت فهرست"
+
+msgid "Help Needed"
+msgstr "درخواست کمک"
+
+msgid "Intake Intervals"
+msgstr "فواصل دریافت دارو"
+
+msgid "Next Intake"
+msgstr "نوبت بعدی دارو"
+
+msgid "Prescription Cost"
+msgstr "قیمت نسخه"
+
+msgid "Patient Claimed Cost"
+msgstr "هزینه اعلامی بیمار برای داروها"
+
+msgid "Pharmacy"
+msgstr "داروخانه"
+
+msgid "Patient Case Form"
+msgstr "فرم مشخصات بیمار"
+
+msgid "First Guardian Name"
+msgstr "نام اولین سرپرست"
+
+msgid "First Guardian National Code"
+msgstr "کد ملی اولین سرپرست"
+
+msgid "First Guardian Relation"
+msgstr "نسبت اولین سرپرست"
+
+msgid "Nationality"
+msgstr "ملیت"
+
+msgid "Gender"
+msgstr "جنسیت"
+
+msgid "Birthdate"
+msgstr "تاریخ تولد"
+
+msgid "Educational Status"
+msgstr "وضعیت تحصیلی"
+
+msgid "Social Insurance Type"
+msgstr "نوع بیمهٔ پایه"
+
+msgid "Social Insurance Number"
+msgstr "شمارهٔ بیمهٔ اجتماعی"
+
+msgid "Social Insurance Description"
+msgstr "توضیح بیمهٔ پایه"
+
+msgid "Private Insurance Name"
+msgstr "نام بیمهٔ تکمیلی"
+
+msgid "Private Insurance Number"
+msgstr "شماره بیمهٔ تکمیلی"
+
+msgid "Marital Status"
+msgstr "وضعیت تاهل"
+
+msgid "Marital Status Description"
+msgstr "توضیحات وضعیت تاهل"
+
+msgid "Housing Status"
+msgstr "وضعیت مسکن"
+
+msgid "Deposit Amount"
+msgstr "مبلغ رهن"
+
+msgid "Rent Amount"
+msgstr "مبلغ اجاره"
+
+msgid "Family Monthly Expenses"
+msgstr "هزینه‌های ماهانه خانواده"
+
+msgid "Income Expenses Description"
+msgstr "توضیحات درآمد و هزینه‌ها"
+
+msgid "Subsidy"
+msgstr "یارانه"
+
+msgid "Has Job"
+msgstr "وضعیت اشتغال"
+
+msgid "Monthly Income"
+msgstr "درآمد ماهانه"
+
+msgid "Amount of Installment or Debt"
+msgstr "میزان قسط یا بدهی"
+
+msgid "Repayment Due Date"
+msgstr "تاریخ سررسید بازپرداخت"
+
+msgid "Mobile Number"
+msgstr "شماره موبایل"
+
+msgid "Representor"
+msgstr "نام فرد مراجعه کننده"
+
+msgid "Representor Relation"
+msgstr "نسبت فرد مراجعه کننده"
+
+msgid "Other Supporter's Section Header"
+msgstr ""
+"فهرست مؤسسات، شرکت‌ها، سازمان‌ها یا خیریه‌هایی که از آنها برای تامین دارو یا "
+"سایر امور کمک گرفته می‌شود"
+
+msgid "Support Start"
+msgstr "شروع حمایت"
+
+msgid "Support End"
+msgstr "پایان حمایت"
+
+msgid "Relative Form"
+msgstr "فرم مشخصات خانوادگی بیمار"
+
+msgid "Year of Birth"
+msgstr "سال تولد"
+
+msgid "Occupation"
+msgstr "شغل"
+
+msgid "Patient Problem"
+msgstr "بیان مشکل از نظر مراجع و درخواست"
+
+msgid "Helper Comment"
+msgstr "نظر مددکار"
+
+msgid "Patient Name"
+msgstr "نام بیمار"
+
+msgid "Relative Disease"
+msgstr "بیماری بستگان"
+
+msgid "Export Pdf"
+msgstr "خروجی pdf"
+
+msgid "Pharmacist Name"
+msgstr "نام داروساز"
+
+msgid "Medical Records"
+msgstr "وضعیت پزشکی"
+
+msgid "Doctors Names"
+msgstr "پزشکان معالج"
+
+msgid "Medical Record"
+msgstr "وضعیت‌های پزشکی"
+
+msgid "Relative Diseases"
+msgstr "سابقه بیماری بستگان"
+
+msgid "Patient Disease"
+msgstr "بیماری"
+
+msgid "Patient Diseases"
+msgstr "بیماری ها"
+
+msgid "Prescription Number"
+msgstr "تعداد تجویز"
+
+msgid "Unit Price"
+msgstr " قیمت واحد (ریال)"
+
+msgid "Patient Share"
+msgstr "سهم بیمار"
+
+msgid "Price Difference"
+msgstr "اختلاف قیمت"
+
+msgid "Patient Drug Record"
+msgstr "داروی بیمار"
+
+msgid "Patient Drug"
+msgstr "فرم مشخصات داروها"
+
+msgid "Center Name"
+msgstr "نام مرکز"
+
+msgid "Patient Doctor"
+msgstr "پزشک معالج"
+
+msgid "Patient Doctors"
+msgstr "پزشکان معالج"
+
+msgid "Disease Record"
+msgstr "تاریخچه بیماری"
+
+msgid "Disease Records"
+msgstr "تاریخچه بیماری‌ها"
+
+msgid "Patient Chart"
+msgstr "پروندهٔ پزشکی"
+
+msgid "Patient Charts"
+msgstr "پروندهٔ‌های پزشکی"
+
+msgid "Pharmacist"
+msgstr "داروساز"
+
+msgid "Treatment Follow"
+msgstr "روند پیگیری درمان"
+
+msgid "Treatment Plan"
+msgstr "طرح درمان"
+
+msgid "Treatment Plans"
+msgstr "طرح‌های درمان"
+
+msgid "Patient State"
+msgstr "شرح حال بیمار"
+
+msgid "Current Symptom"
+msgstr "تابلوی علامت فعلی بیمار"
+
+msgid "Main Treatment Process"
+msgstr "روند درمان اصلی بیمار"
+
+msgid "Other Description"
+msgstr "سایر توضیحات"
+
+msgid "Current Patient State"
+msgstr "شرح حال فعلی بیمار"
+
+msgid "Current Patient States"
+msgstr "شرح حال فعلی بیمار"
+
+msgid "Please enter a correct value for percentage."
+msgstr "لطفا یک مقدار درست برای درصد وارد کنید."
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "No"
+msgstr "نه"
+
+msgid "Patients"
+msgstr "بیماران"
+
+msgid "Patient"
+msgstr "بیمار"
+
+msgid "Case Completion Date"
+msgstr "تاریخ تکمیل پرونده"
+
+msgid "Guardian Status"
+msgstr "وضعیت سرپرست"
+
+msgid "Second Guardian Name"
+msgstr "نام دومین سرپرست"
+
+msgid "Second Guardian National Code"
+msgstr "کد ملی دومین سرپرست"
+
+msgid "Second Guardian Relation"
+msgstr "نسبت دومین سرپرست"
+
+msgid "Private Insurance Description"
+msgstr "توضیح بیمهٔ تکمیلی"
+
+msgid "Home Number"
+msgstr "شماره تلفن منزل"
+
+msgid "Representor Phone"
+msgstr "شماره تماس رابط"
+
+msgid "Patient Cases"
+msgstr "پرونده‌های بیماران"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "File"
+msgstr "فایل"
+
+msgid "Document"
+msgstr "مدرک"
+
+msgid "Documents"
+msgstr "مدارک"
+
+msgid "Job Description"
+msgstr "توضیح شغل"
+
+msgid "Other Monthly Income"
+msgstr "درآمدهای دیگر ماهانه"
+
+msgid "Recipient"
+msgstr "دریافت کننده کمک"
+
+msgid "Helper Assessment"
+msgstr "ارزیابی مددکار"
+
+msgid "Livelihood Assessment"
+msgstr "ارزیابی معیشتی"
+
+msgid "Livelihood Assessments"
+msgstr "ارزیابی‌های معیشتی"
+
+msgid "Health Status"
+msgstr "وضعیت سلامت"
+
+msgid "Relative"
+msgstr "خویشاوند"
+
+msgid "Relatives"
+msgstr "خویشاوندان"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Support Count"
+msgstr "تعداد حمایت"
+
+msgid "Other Supporter"
+msgstr "حامی دیگر"
+
+msgid "Other Supporters"
+msgstr "حامیان دیگر"
+
+msgid "Multiple Receive"
+msgstr "دریافت چندباره دارو"
+
+msgid "First Intake Date"
+msgstr "تاریخ اولین نوبت"
+
+msgid "Help Intervals"
+msgstr "فواصل دریافت کمک "
+
+msgid "Supplier Pharmacy"
+msgstr "داروخانه تامین کننده"
+
+msgid "Application Support"
+msgstr "درخواست حمایت دارویی"
+
+msgid "Application Supports"
+msgstr "درخواست‌های حمایت دارویی"
+
+msgid "Percentage"
+msgstr "درصد"
+
+msgid "Amount"
+msgstr "میزان"
+
+msgid "Intervals"
+msgstr "فواصل"
+
+msgid "End Date"
+msgstr "تاریخ پایان"
+
+msgid "Support Program"
+msgstr "تعیین برنامه کمک"
+
+msgid "Program Type"
+msgstr "نوع برنامه"
+
+msgid "Service Pharmacy"
+msgstr "داروخانه خدمت دهنده"
+
+msgid "Drug Delivery Type"
+msgstr "تحویل دارو"
+
+msgid "Support Programs"
+msgstr "تعیین برنامه‌های کمک"
+
+msgid "Patient Description"
+msgstr "شرح بیمار"
+
+msgid "Patient Helper History"
+msgstr "شرح حال مددکاری بیمار"
+
+msgid "Patient Helper Histories"
+msgstr "شرح حال‌های مددکاری بیمار"
 
 msgid "Male"
 msgstr "مرد"
@@ -30,6 +708,9 @@ msgstr "دیگر"
 
 msgid "Iranian"
 msgstr "ایرانی"
+
+msgid "Self"
+msgstr "خود"
 
 msgid "Alborz"
 msgstr "البرز"
@@ -151,446 +832,17 @@ msgstr "سلامت ایرانیان"
 msgid "Social Security"
 msgstr "تامین اجتماعی"
 
-msgid "Unemployment Insurance"
-msgstr "بیمه بیکاری"
+msgid "Villagers and Nomads"
+msgstr "روستاییان و عشایر"
 
-msgid "Retirement Pension"
-msgstr "بازنشستگی"
+msgid "Government Employees"
+msgstr "کارکنان دولت"
 
-msgid "None"
-msgstr "هیچکدام"
+msgid "Special Diseases"
+msgstr "بیماری‌های خاص"
 
-msgid "Creator"
-msgstr "ایجاد کننده"
-
-msgid "Active"
-msgstr "فعال"
-
-msgid "Created At"
-msgstr "ایجاد شده در"
-
-msgid "Modified At"
-msgstr "ویرایش شده در"
-
-msgid "First Name"
-msgstr "نام"
-
-msgid "Last Name"
-msgstr "نام خانوادگی"
-
-msgid "Gender"
-msgstr "جنسیت"
-
-msgid "Birthdate"
-msgstr "تاریخ تولد"
-
-msgid "National Code"
-msgstr "کد ملی"
-
-msgid "Nationality"
-msgstr "ملیت"
-
-msgid "First Guardian Name"
-msgstr "نام اولین سرپرست"
-
-msgid "First Guardian National Code"
-msgstr "کد ملی اولین سرپرست"
-
-msgid "First Guardian Relation"
-msgstr "نسبت اولین سرپرست"
-
-msgid "Second Guardian Name"
-msgstr "نام دومین سرپرست"
-
-msgid "Second Guardian National Code"
-msgstr "کد ملی دومین سرپرست"
-
-msgid "Second Guardian Relation"
-msgstr "نسبت دومین سرپرست"
-
-msgid "Social Insurance Type"
-msgstr "نوع بیمهٔ پایه"
-
-msgid "Social Insurance Number"
-msgstr "شمارهٔ بیمهٔ اجتماعی"
-
-msgid "Social Insurance Description"
-msgstr "توضیح بیمهٔ پایه"
-
-msgid "Educational Status"
-msgstr "وضعیت تحصیلی"
-
-msgid "Has Private Insurance"
-msgstr "دارای بیمهٔ تکمیلی"
-
-msgid "Private Insurance Name"
-msgstr "نام بیمهٔ تکمیلی"
-
-msgid "Private Insurance Description"
-msgstr "توضیح بیمهٔ تکمیلی"
-
-msgid "Marital Status"
-msgstr "وضعیت تاهل"
-
-msgid "Marital Status Description"
-msgstr "توضیحات وضعیت تاهل"
-
-msgid "Housing Status"
-msgstr "وضعیت مسکن"
-
-msgid "Deposit Amount"
-msgstr "مبلغ رهن"
-
-msgid "Rent Amount"
-msgstr "مبلغ اجاره"
-
-msgid "Has Job"
-msgstr "وضعیت اشتغال"
-
-msgid "Monthly Income"
-msgstr "درآمد ماهانه"
-
-msgid "Subsidy"
-msgstr "یارانه"
-
-msgid "Family Monthly Expenses"
-msgstr "هزینه‌های ماهانه خانواده"
-
-msgid "Amount of Installment or Debt"
-msgstr "میزان قسط یا بدهی"
-
-msgid "Repayment Due Date"
-msgstr "تاریخ سررسید بازپرداخت"
-
-msgid "Income Expenses Description"
-msgstr "توضیحات درآمد و هزینه‌ها"
-
-msgid "Country"
-msgstr "کشور"
-
-msgid "Province of Residence"
-msgstr "استان محل سکونت"
-
-msgid "Province"
-msgstr "استان"
-
-msgid "City of Residence"
-msgstr "شهر محل سکونت"
-
-msgid "City"
-msgstr "شهر"
-
-msgid "Address"
-msgstr "آدرس"
-
-msgid "Mobile Number"
-msgstr "شماره موبایل"
-
-msgid "Phone Number"
-msgstr "شماره تلفن"
-
-msgid "Representor"
-msgstr "نام فرد مراجعه کننده"
-
-msgid "Representor Relation"
-msgstr "نسبت فرد مراجعه کننده"
-
-msgid "Referrer Name"
-msgstr "نام معرف"
-
-msgid "Other Information"
-msgstr "سایر اطلاعات"
-
-msgid "Patient Case"
-msgstr "پروندهٔ بیمار"
-
-msgid "Patient Cases"
-msgstr "پرونده‌های بیماران"
-
-msgid "Relation"
-msgstr "نسبت"
-
-msgid "Year of Birth"
-msgstr "سال تولد"
-
-msgid "Occupation"
-msgstr "شغل"
-
-msgid "Health Status"
-msgstr "وضعیت سلامت"
-
-msgid "Relative"
-msgstr "خویشاوند"
-
-msgid "Relatives"
-msgstr "خویشاوندان"
-
-msgid "Name"
-msgstr "نام"
-
-msgid "Support Start"
-msgstr "شروع حمایت"
-
-msgid "Support End"
-msgstr "پایان حمایت"
-
-msgid "Other Supporter"
-msgstr "حامی دیگر"
-
-msgid "Other Supporters"
-msgstr "حامیان دیگر"
-
-msgid "Document"
-msgstr "مدرک"
-
-msgid "Documents"
-msgstr "مدارک"
-
-msgid "Type"
-msgstr "نوع"
-
-msgid "Patient Problem"
-msgstr "بیان مشکل از نظر مراجع و درخواست"
-
-msgid "Helper Comment"
-msgstr "نظر مددکار"
-
-msgid "Disease Type"
-msgstr "دسته بیماری"
-
-msgid "Disease Name"
-msgstr "نام بیماری"
-
-msgid "Disease Name (2nd)"
-msgstr "بیماری دوم"
-
-msgid "Diagnosis Year"
-msgstr "سال تشخیص"
-
-msgid "Diagnosis"
-msgstr "نحوه تشخیص بیماری و کلیه اقدامات درمانی که برای بیمار انجام شده است را شرح دهید"
-
-msgid "Diagnosis Tests"
-msgstr "آزمایش‌های تشخیصی و زمان انجام"
-
-msgid "Drug History"
-msgstr "سابقه دارویی"
-
-msgid "Surgery History"
-msgstr "سابقه جراحی"
-
-msgid "Other Diseases"
-msgstr "سایر بیماری‌های زمینه‌ای"
-
-msgid "Dietary Habits"
-msgstr "وضعیت تغذیه‌ای"
-
-msgid "Movement Ability"
-msgstr "توانایی حرکتی"
-
-msgid "Routines Ability"
-msgstr "انجام کارهای شخصی"
-
-msgid "Talking and Swallowing"
-msgstr "حرف زدن و بلعیدن"
-
-msgid "Gatherings Attending"
-msgstr "حضور در مهمانی و دورهمی"
-
-msgid "Family and Social"
-msgstr "روابط خانوداگی و اجتماعی"
-
-msgid "Height"
-msgstr "قد"
-
-msgid "Weight"
-msgstr "وزن"
-
-msgid "Drugs Abuse"
-msgstr "سابقه‌ مصرف مواد مخدر و مقدار آن"
-
-msgid "Treatment Facilities"
-msgstr "محل انجام کارهای درمانی"
-
-msgid "Doctor Name"
-msgstr "پزشک معالج"
-
-msgid "Medical Record"
-msgstr "وضعیت درمانی"
-
-msgid "Medical Records"
-msgstr "وضعیت درمانی"
-
-msgid "Other Supporter's Section Header"
-msgstr "فهرست مؤسسات، شرکت‌ها، سازمان‌ها یا خیریه‌هایی که از آنها برای تامین دارو یا سایر امور کمک گرفته می‌شود"
-
-msgid "Phone"
-msgstr "تلفن"
-
-msgid "Drug Brands"
-msgstr "برند های دارو"
-
-msgid "Drug Brand"
-msgstr "برند دارو"
-
-msgid "Drugs"
-msgstr "دارو ها"
-
-msgid "Drug"
-msgstr "دارو"
-
-msgid "Generic Drugs"
-msgstr "داروهای ژنریک"
-
-msgid "Generic Drug"
-msgstr "داروی ژنریک"
-
-msgid "Brand Name"
-msgstr "نام برند"
-
-msgid "Drafts"
-msgstr "حواله های دارو"
-
-msgid "Draft"
-msgstr "حواله دارو"
-
-msgid "Draft Type"
-msgstr "نوع حواله"
-
-msgid "Status"
-msgstr "وضعیت"
-
-msgid "Drug Receive Date"
-msgstr "تاریخ دریافت دارو"
-
-msgid "Invoice Create Date"
-msgstr "تاریخ صدور فاکتور"
-
-msgid "Draft Create Date"
-msgstr "تاریخ صدور حواله"
-
-msgid "Draft Receive Date"
-msgstr "تاریخ دریافت حواله"
-
-msgid "Payment Date"
-msgstr "تاریخ پرداخت"
-
-msgid "Draft Supporters"
-msgstr "حامیان دیگر حواله"
-
-msgid "Draft Supporter"
-msgstr "حامی حواله"
-
-msgid "Supporter"
-msgstr "حامی"
-
-msgid "Support Amount"
-msgstr "مبلغ حمایتی (ریال)"
-
-msgid "Count"
-msgstr "تعداد"
-
-msgid "Draft Drug"
-msgstr "دارو"
-
-msgid "Draft Drugs"
-msgstr "داروهای حواله"
-
-msgid "Invoice Amount"
-msgstr "مبلغ فاکتور (ریال)"
-
-msgid "Cash Draft Amount"
-msgstr "حواله نقدی (ارزش ریالی)"
-
-msgid "Drug Draft Amount"
-msgstr "حواله دارویی (ارزش ریالی)"
-
-msgid "Patient Amount"
-msgstr "مبلغ پرداختی بیمار (ریال)"
-
-msgid "Insurance Amount"
-msgstr "مبلغ پرداختی بیمه (ریال)"
-
-msgid "Supplier Type"
-msgstr "تامین کننده"
-
-msgid "Supplier Name"
-msgstr "نام تامین کننده"
-
-msgid "Ghatre Title"
-msgstr "جمعیت خیریه حمایت دارویی قطره"
-
-msgid "Patient Case Form"
-msgstr "فرم مشخصات بیمار"
-
-msgid "Relative Form"
-msgstr "فرم مشخصات خانوادگی بیمار"
-
-msgid "Case Number"
-msgstr "شماره پرونده"
-
-msgid "Service Date"
-msgstr "تاریخ مراجعه"
-
-msgid "Operator Name"
-msgstr "نام تکمیل کننده"
-
-msgid "Father Name"
-msgstr "نام پدر"
-
-msgid "Description"
-msgstr "توضیحات"
-
-msgid "Export Pdf"
-msgstr "خروجی pdf"
-
-msgid "Medical Record Form"
-msgstr "فرم وضعیت درمانی بیمار"
-
-msgid "Age"
-msgstr "سن بیمار"
-
-msgid "Creation Date"
-msgstr "تاریخ تکمیل فرم"
-
-msgid "Medical History"
-msgstr "پیشینه پزشکی"
-
-msgid "Current Status"
-msgstr "وضعیت فعلی و کیفیت زندگی بیمار"
-
-msgid "Usage Start"
-msgstr "شروع مصرف"
-
-msgid "Usage Duration"
-msgstr "طول دوره مصرف"
-
-msgid "Usage Instruction"
-msgstr "دستور مصرف"
-
-msgid "Costs"
-msgstr "هزینه"
-
-msgid "Patient Drug Record"
-msgstr "داروی بیمار"
-
-msgid "Patient Drug Records"
-msgstr "داروهای بیمار"
-
-msgid "Patient Drug Form"
-msgstr "فرم مشخصات داروها"
-
-msgid "Patient Drug Name"
-msgstr "نام-شکل و دوز دارو"
-
-msgid "Refer Date"
-msgstr "تاریخ مراجعه"
-
-msgid "Self"
-msgstr "خود"
-
-msgid "Guardian Status"
-msgstr "وضعیت سرپرست"
+msgid "Other Layers"
+msgstr "سایر اقشار"
 
 msgid "Medical Services"
 msgstr "خدمات درمانی"
@@ -598,68 +850,29 @@ msgstr "خدمات درمانی"
 msgid "Armed Forces"
 msgstr "نیروهای مسلح"
 
-msgid "Job Description"
-msgstr "توضیح شغل"
+msgid "Foreigners-Health"
+msgstr "سلامت- اتباع"
 
-msgid "Case Completion Date"
-msgstr "تاریخ تکمیل پرونده"
+msgid "Foreigners-Social Security"
+msgstr "تامین اجتماعی - اتباع"
 
-msgid "Infection Age"
-msgstr "سن ابتلا"
+msgid "None"
+msgstr "هیچکدام"
 
-msgid "Current Health Status"
-msgstr "وضعیت سلامتی فعلی"
+msgid "Foreigners-None"
+msgstr "ندارد- اتباع"
 
-msgid "Relative Disease"
-msgstr "بیماری بستگان"
+msgid "Baloch-None"
+msgstr "ندارد- بلوچ"
 
-msgid "Relative Diseases"
-msgstr "سابقه بیماری بستگان"
+msgid "Parents House"
+msgstr "منزل پدر و مادر"
 
-msgid "Costs Without Insurance"
-msgstr "هزینه با احتساب کسر از بیمه"
+msgid "Child House"
+msgstr "منزل فرزند"
 
-msgid "List Status"
-msgstr "وضعیت فهرست"
-
-msgid "Help Needed"
-msgstr "درخواست کمک"
-
-msgid "Intake Intervals"
-msgstr "فواصل دریافت دارو"
-
-msgid "Patient Disease"
-msgstr "بیماری"
-
-msgid "Patient Diseases"
-msgstr "بیماری ها"
-
-msgid "Patient Doctor"
-msgstr "پزشک معالج"
-
-msgid "Patient Doctors"
-msgstr "پزشکان معالج"
-
-msgid "Next Intake"
-msgstr "نوبت بعدی دارو"
-
-msgid "Prescription Cost"
-msgstr "قیمت نسخه"
-
-msgid "Patient Claimed Cost"
-msgstr "هزینه اعلامی بیمار برای داروها"
-
-msgid "Pharmacy"
-msgstr "داروخانه"
-
-msgid "Recipient"
-msgstr "دریافت کننده کمک"
-
-msgid "Disease Record"
-msgstr "تاریخچه بیماری"
-
-msgid "Disease Records"
-msgstr "تاریخچه بیماری‌ها"
+msgid "Relative House"
+msgstr "منزل خویشاوند"
 
 msgid "Treatment In Progress"
 msgstr "در حال درمان"
@@ -679,47 +892,71 @@ msgstr "تک نسخه‌ای"
 msgid "Without Insurance"
 msgstr "بدون بیمه"
 
-msgid "Family History"
-msgstr "سابقه بیماری مشابه در خانواده و بستگان"
-
-msgid "Contact Location"
-msgstr "نوع ارتباط"
-
-msgid "Drugs Cost"
-msgstr "هزینه دارو (ریال)"
-
-msgid "Treatment Program"
-msgstr "رژیم درمانی"
-
-msgid "Contact Description"
-msgstr "توضیحات تماس"
-
-msgid "Has Social Insurance"
-msgstr "بیمه پایه"
-
-msgid "Last Action"
-msgstr "توضیح آخرین اقدام"
-
-msgid "Last Action Date"
-msgstr "تاریخ آخرین اقدام"
-
-msgid "Input Log"
-msgstr "فهرست ورودی"
-
-msgid "Input Logs"
-msgstr "فهرست ورودی"
-
 msgid "Reception"
 msgstr "پذیرش"
 
 msgid "Waiting"
 msgstr "در انتظار"
 
-msgid "Patients"
-msgstr "بیماران"
+msgid "Rejection"
+msgstr "عدم پذیرش"
 
-msgid "Home"
-msgstr "خانه"
+msgid "Detected"
+msgstr "شناسایی شده"
+
+msgid "Reviewed"
+msgstr "ارزیابی شده"
 
 msgid "Semi Active"
 msgstr "نیمه فعال"
+
+msgid "Companion"
+msgstr "همراه بیمار"
+
+msgid "Two Weeks"
+msgstr "هر دو هفته"
+
+msgid "Three Weeks"
+msgstr "هر سه هفته"
+
+msgid "Monthly"
+msgstr "ماهانه"
+
+msgid "Two_Months"
+msgstr "دو ماهه"
+
+msgid "Three_Months"
+msgstr "سه ماهه"
+
+msgid "Six_Months"
+msgstr "شش ماهه"
+
+msgid "One Time Payment"
+msgstr "یک بار پرداخت"
+
+msgid "Supervisor Approval"
+msgstr "تاییدیه سرپرست"
+
+msgid "Program"
+msgstr "برنامه"
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Office Call"
+msgstr "تماس دفتر"
+
+msgid "Novatel Call"
+msgstr "تماس نواتل"
+
+msgid "13 Aban Office"
+msgstr "دفتر ۱۳ آبان"
+
+msgid "University Office"
+msgstr "دفتر دانشکده"
+
+msgid "Yazd Office"
+msgstr "دفتر یزد"
+
+msgid "Prescription Approval Office"
+msgstr "قیمت نسخه"
