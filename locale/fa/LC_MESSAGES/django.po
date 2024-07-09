@@ -454,11 +454,29 @@ msgstr "حواله های دارو"
 msgid "Draft"
 msgstr "حواله دارو"
 
+msgid "Next Visit"
+msgstr "مراجعه بعدی"
+
 msgid "Draft Type"
 msgstr "نوع حواله"
 
 msgid "Status"
 msgstr "وضعیت"
+
+msgid "Receive Status"
+msgstr "وضعیت دریافت"
+
+msgid "Receive Description"
+msgstr "دلیل عدم دریافت"
+
+msgid "Draft Receiver"
+msgstr "دریافت کننده حواله"
+
+msgid "Receiving Center"
+msgstr "مرکز دریافت خدمت"
+
+msgid "Draft Caused"
+msgstr "بابت"
 
 msgid "Drug Receive Date"
 msgstr "تاریخ دریافت دارو"
@@ -499,6 +517,9 @@ msgstr "داروهای حواله"
 msgid "Invoice Amount"
 msgstr "مبلغ فاکتور (ریال)"
 
+msgid "Total Amount"
+msgstr "مبلغ کل (ریال)"
+
 msgid "Cash Draft Amount"
 msgstr "حواله نقدی (ارزش ریالی)"
 
@@ -510,6 +531,9 @@ msgstr "مبلغ پرداختی بیمار (ریال)"
 
 msgid "Insurance Amount"
 msgstr "مبلغ پرداختی بیمه (ریال)"
+
+msgid "Modify Description"
+msgstr "توضیح تغییرات"
 
 msgid "Supplier Type"
 msgstr "تامین کننده"
