@@ -23,20 +23,20 @@ class Draft(models.Model):
     status=models.CharField(max_length=20,choices=DRAFT_STATUS_CHOICES, default=None, verbose_name=_('Status'))
 
     # prices
-    total_amount=models.FloatField(verbose_name=_('Total Amount'))
-    patient_amount=models.FloatField(verbose_name=_('Patient Amount'))
-    insurance_amount=models.FloatField(verbose_name=_('Insurance Amount'))
-    cash_amount=models.FloatField(verbose_name=_('Cash Amount'))
-    medicine_amount=models.FloatField(verbose_name=_('Medicine Amount'))
-    franchise=models.FloatField(verbose_name=_('Franchise'))
+    total_amount=models.FloatField(verbose_name=_('Total Amount'), default=0)
+    patient_amount=models.FloatField(verbose_name=_('Patient Amount'), default=0)
+    insurance_amount=models.FloatField(verbose_name=_('Insurance Amount'), default=0)
+    cash_amount=models.FloatField(verbose_name=_('Cash Amount'), default=0)
+    medicine_amount=models.FloatField(verbose_name=_('Medicine Amount'), default=0)
+    franchise=models.FloatField(verbose_name=_('Franchise'), default=0)
 
 
     # draft information
     draft_type = models.CharField(max_length=10, choices=DRAFT_TYPE_CHOICES, verbose_name=_('Draft Type'))
-    draft_receiver = models.CharField(max_length=30,choices=DRAFT_RECEIVER_CHOICES, verbose_name=_('Draft Receiver'))
-    receiving_center=models.CharField(max_length=200, verbose_name=_('Receiving Center'))
-    draft_caused = models.CharField(max_length=30, choices=DRAFT_CAUSED_CHOICES, verbose_name=_('Draft Caused'))
-    support_type = models.CharField(max_length=10, choices=SUPPORT_TYPE_CHOICES, verbose_name=_('Support Type'))
+    draft_receiver = models.CharField(max_length=30,choices=DRAFT_RECEIVER_CHOICES, verbose_name=_('Draft Receiver'), default='pharmacy')
+    receiving_center=models.CharField(max_length=200, verbose_name=_('Receiving Center'), default='')
+    draft_caused = models.CharField(max_length=30, choices=DRAFT_CAUSED_CHOICES, verbose_name=_('Draft Caused'), default='drug')
+    support_type = models.CharField(max_length=10, choices=SUPPORT_TYPE_CHOICES, verbose_name=_('Support Type'), default='mix')
     description=models.TextField(default=None, blank=True, verbose_name=_('Description'))
     modify_description=models.TextField(default=None, blank=True, verbose_name=_('Modify Description'))
 
@@ -75,11 +75,11 @@ class DraftDrug(models.Model):
     draft=models.ForeignKey(Draft, on_delete=models.CASCADE, verbose_name=_('Draft'))
     generic_drug=models.ForeignKey(GenericDrug, on_delete=models.CASCADE, verbose_name=_('Generic Drug'))
     drug_brand=models.ForeignKey(DrugBrand, on_delete=models.CASCADE, verbose_name=_('Drug Brand'), default=None)
-    dose=models.CharField(max_length=256, verbose_name=_('Dose'))
-    start_date=jModels.jDateField(verbose_name=_('Start Taking Date'))
-    duration=models.PositiveIntegerField(verbose_name=_('Duration(Day)'))
+    dose=models.CharField(max_length=256, verbose_name=_('Dose'), default='')
+    start_date=jModels.jDateField(verbose_name=_('Start Taking Date'), default=None)
+    duration=models.PositiveIntegerField(verbose_name=_('Duration(Day)'), default=0)
     count=models.PositiveIntegerField(verbose_name="Count")
-    unit_price=models.PositiveIntegerField(verbose_name="Unit Price")
+    unit_price=models.PositiveIntegerField(verbose_name="Unit Price", default=0)
 
     class Meta:
         verbose_name = _('Draft Drug')
