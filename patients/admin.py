@@ -5,6 +5,8 @@ from import_export.admin import ImportExportModelAdmin
 from patients.models import Relative, OtherSupporter, Document, PatientCase
 from utils.export_helpers import export_patient_as_pdf
 
+import jdatetime
+
 
 class RelativeInline(admin.TabularInline):
     model = Relative
@@ -25,7 +27,9 @@ class PatientCaseResource(resources.ModelResource):
 
 @admin.register(PatientCase)
 class PatientCaseAdmin(ImportExportModelAdmin):
-    list_display = ['case_number', 'first_name', 'last_name']
+    list_display = ['pk', 'case_number', 'first_name', 'last_name', 'national_code', 'mobile_number']
+    search_fields = ['first_name', 'last_name', 'national_code', 'mobile_number']
+    list_filter = ['status']
     inlines = [
         RelativeInline,
         OtherSupporterInline,
@@ -39,4 +43,7 @@ class PatientCaseAdmin(ImportExportModelAdmin):
         if not obj.id:
             # Only set the created_by field if the object is being created
             obj.created_by = request.user
+        if not obj.case_number:
+            current_year = jdatetime.datetime.now().year
+            obj.case_number = '%s-%s' % (obj.id, current_year) 
         super().save_model(request, obj, form, change)

@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import include, path
+from django.urls import include, path, re_path
+import private_storage.urls
 
 urlpatterns = [
     # path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('admin/', admin.site.urls),    
+    path('admin/', admin.site.urls),
+    re_path('^private_media/', include(private_storage.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
