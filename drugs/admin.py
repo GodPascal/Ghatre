@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 from drugs.models import DrugBrand, GenericDrug
 
 
-
 class DrugBrandForm(forms.ModelForm):
     def clean_phone(self):
         if self.cleaned_data['phone'].isdigit():
@@ -15,6 +14,7 @@ class DrugBrandForm(forms.ModelForm):
 
         raise forms.ValidationError(
             _('Number should only contain digits.'))
+
 
 @admin.register(DrugBrand)
 class DrugBrandAdmin(admin.ModelAdmin):
@@ -27,7 +27,7 @@ class DrugBrandAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')
 
 
 @admin.register(GenericDrug)
@@ -38,4 +38,4 @@ class GenericDrugAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Created Date Display'))
     def created_at_display(self, instance):
-        return jdatetime.datetime.fromgregorian(datetime=instance.created_at)
+        return jdatetime.datetime.fromgregorian(datetime=instance.created_at).strftime('%Y-%m-%d %H:%M')

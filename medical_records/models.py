@@ -46,9 +46,9 @@ class RelativeDisease(models.Model):
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
 
-    relation = models.CharField(max_length=255, verbose_name=_('Relation'))
+    relation = models.CharField(max_length=255, blank=True, verbose_name=_('Relation'))
     disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
-    infection_age = models.IntegerField(verbose_name=_('Infection Age'))
+    infection_age = models.PositiveIntegerField(verbose_name=_('Infection Age'))
     current_health_status = models.CharField(max_length=255, verbose_name=_('Current Health Status'))
 
     class Meta:
@@ -66,7 +66,7 @@ class PatientDisease(models.Model):
 
     disease_type = models.CharField(max_length=30, choices=DISEASE_TYPE_CHOICES, verbose_name=_('Disease Type'))
     disease_name = models.CharField(max_length=255, verbose_name=_('Disease Name'))
-    diagnosis_year = models.IntegerField(verbose_name=_('Diagnosis Year'))
+    diagnosis_year = models.PositiveIntegerField(verbose_name=_('Diagnosis Year'))
     status = models.CharField(max_length=20, choices=DISEASE_STATUS_CHOICES, verbose_name=_('Status'))
 
     class Meta:
@@ -88,10 +88,10 @@ class PatientDrugRecord(models.Model):
     usage_start = jmodels.jDateField(verbose_name=_('Usage Start'))
     usage_duration = models.CharField(max_length=30, verbose_name=_('Usage Duration'))
     usage_instruction = models.TextField(verbose_name=_('Usage Instruction'))
-    prescription_number = models.IntegerField(verbose_name=_('Prescription Number'))
-    unit_price = models.IntegerField(verbose_name=_('Unit Price'))
-    patient_share = models.IntegerField(verbose_name=_('Patient Share'))
-    price_difference = models.IntegerField(verbose_name=_('Price Difference'))
+    prescription_number = models.PositiveIntegerField(verbose_name=_('Prescription Number'))
+    unit_price = models.PositiveIntegerField(verbose_name=_('Unit Price'))
+    patient_share = models.PositiveIntegerField(verbose_name=_('Patient Share'))
+    price_difference = models.PositiveIntegerField(verbose_name=_('Price Difference'))
     list_status = models.CharField(max_length=20, choices=PATIENT_DRUG_LIST_STATUS_CHOICES,
                                    verbose_name=_('List Status'))
     help_needed = models.BooleanField(verbose_name=_('Help Needed'))
@@ -111,9 +111,9 @@ class PatientDoctor(models.Model):
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
 
-    doctor_name = models.CharField(blank=True, max_length=255, verbose_name=_('Doctor Name'))
-    center_name = models.CharField(blank=True, max_length=255, verbose_name=_('Center Name'))
-    description = models.TextField(blank=True, verbose_name=_('Description'))
+    doctor_name = models.CharField(max_length=255, verbose_name=_('Doctor Name'))
+    center_name = models.CharField(max_length=255, verbose_name=_('Center Name'))
+    description = models.TextField(verbose_name=_('Description'))
     status = models.CharField(max_length=20, choices=PATIENT_DOCTOR_STATUS_CHOICES, verbose_name=_('Status'))
 
     class Meta:
@@ -159,10 +159,10 @@ class CurrentPatientState(BaseModel):
     modified_at = models.DateField(auto_now=True, verbose_name=_('Modified At'))
     created_at = models.DateField(auto_now_add=True, verbose_name=_('Created At'))
   
-    patient_state = models.TextField(verbose_name=_('Patient State'))
+    patient_state = models.TextField(blank=True, verbose_name=_('Patient State'))
     current_symptom = models.TextField(verbose_name=_('Current Symptom'))
     main_treatment_process = models.TextField(verbose_name=_('Main Treatment Process'))
-    other_description = models.TextField(verbose_name=_('Other Description'))
+    other_description = models.TextField(blank=True, verbose_name=_('Other Description'))
 
     class Meta:
         verbose_name = _('Current Patient State')
