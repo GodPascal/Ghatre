@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 13:54+0000\n"
+"POT-Creation-Date: 2024-07-08 14:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,6 +105,12 @@ msgstr "دارو"
 msgid "Draft Drugs"
 msgstr "داروهای حواله"
 
+msgid "Number should only contain digits."
+msgstr "شماره باید تنها شامل عدد باشد."
+
+msgid "Created Date Display"
+msgstr "ساخته شده در"
+
 msgid "Drugs"
 msgstr "دارو ها"
 
@@ -129,14 +135,8 @@ msgstr "تلفن"
 msgid "Drug Brands"
 msgstr "برند های دارو"
 
-msgid "Number should only contain digits."
-msgstr "شماره باید تنها شامل عدد باشد."
-
 msgid "Cost Display"
 msgstr "هزینه(تومان)"
-
-msgid "Created Date Display"
-msgstr "ساخته شده در"
 
 msgid "Home"
 msgstr "خانه"
@@ -183,17 +183,8 @@ msgstr "بیمه پایه"
 msgid "Has Private Insurance"
 msgstr "دارای بیمهٔ تکمیلی"
 
-msgid "Last Action Date"
-msgstr "تاریخ آخرین اقدام"
-
-msgid "Description"
-msgstr "توضیحات"
-
 msgid "Service Date"
 msgstr "تاریخ مراجعه"
-
-msgid "Last Action"
-msgstr "توضیح آخرین اقدام"
 
 msgid "Input Log"
 msgstr "فهرست ورودی"
@@ -203,6 +194,21 @@ msgstr "فهرست ورودی"
 
 msgid "Entry List Number"
 msgstr "شماره فهرست ورودی"
+
+msgid "Patient"
+msgstr "بیمار"
+
+msgid "Last Action"
+msgstr "توضیح آخرین اقدام"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Input Log History"
+msgstr "تاریخچه فهرست ورودی"
+
+msgid "Input Log Histories"
+msgstr "تاریخچه‌های فهرست ورودی"
 
 msgid "Ghatre Title"
 msgstr "جمعیت خیریه حمایت دارویی قطره"
@@ -451,26 +457,29 @@ msgstr "بیان مشکل از نظر مراجع و درخواست"
 msgid "Helper Comment"
 msgstr "نظر مددکار"
 
+msgid "Export Pdf"
+msgstr "خروجی pdf"
+
 msgid "Patient Name"
 msgstr "نام بیمار"
 
 msgid "Relative Disease"
 msgstr "بیماری بستگان"
 
-msgid "Export Pdf"
-msgstr "خروجی pdf"
-
 msgid "Pharmacist Name"
 msgstr "نام داروساز"
 
-msgid "Medical Records"
-msgstr "وضعیت پزشکی"
+msgid "Medical Records Tab"
+msgstr "پرونده‌های پزشکی"
 
 msgid "Doctors Names"
 msgstr "پزشکان معالج"
 
 msgid "Medical Record"
-msgstr "وضعیت‌های پزشکی"
+msgstr "سابقه پزشکی"
+
+msgid "Medical Records"
+msgstr "سوابق پزشکی"
 
 msgid "Relative Diseases"
 msgstr "سابقه بیماری بستگان"
@@ -515,10 +524,10 @@ msgid "Disease Records"
 msgstr "تاریخچه بیماری‌ها"
 
 msgid "Patient Chart"
-msgstr "پروندهٔ پزشکی"
+msgstr "نمایش پروندهٔ پزشکی"
 
 msgid "Patient Charts"
-msgstr "پروندهٔ‌های پزشکی"
+msgstr "نمایش پروندهٔ‌های پزشکی"
 
 msgid "Pharmacist"
 msgstr "داروساز"
@@ -553,17 +562,44 @@ msgstr "شرح حال فعلی بیمار"
 msgid "Please enter a correct value for percentage."
 msgstr "لطفا یک مقدار درست برای درصد وارد کنید."
 
+msgid "Patient Final Payment"
+msgstr "پرداختی نهایی بیمار"
+
+msgid "Enter a valid national code."
+msgstr "لطفا یک مقدار درست برای کد ملی وارد کنید."
+
 msgid "Yes"
 msgstr "بله"
 
 msgid "No"
 msgstr "نه"
 
+msgid "Pharmacists"
+msgstr "داروسازها"
+
+msgid "Pharmacist Email"
+msgstr "ایمیل داروساز"
+
+msgid "Helper"
+msgstr "مددکار"
+
+msgid "Medical Record Expert"
+msgstr "کارشناس تشکیل پرونده پزشکی"
+
+msgid "Helper Name"
+msgstr "نام مددکار"
+
+msgid "Helper Email"
+msgstr "ایمیل مددکار"
+
+msgid "Medical Record Expert Name"
+msgstr "نام کارشناس تشکیل پرونده پزشکی"
+
+msgid "Medical Record Expert Email"
+msgstr "ایمیل کارشناس تشکیل پرونده پزشکی"
+
 msgid "Patients"
 msgstr "بیماران"
-
-msgid "Patient"
-msgstr "بیمار"
 
 msgid "Case Completion Date"
 msgstr "تاریخ تکمیل پرونده"
@@ -591,6 +627,18 @@ msgstr "شماره تماس رابط"
 
 msgid "Patient Cases"
 msgstr "پرونده‌های بیماران"
+
+msgid "Patient Dashboard"
+msgstr "داشبورد بیمار"
+
+msgid "Patient Dashboards"
+msgstr "داشبورد بیماران"
+
+msgid "Case Completion History"
+msgstr "تاریخچه تکمیل پرونده"
+
+msgid "Case Completion Histories"
+msgstr "تاریخچه‌های تکمیل پرونده"
 
 msgid "Type"
 msgstr "نوع"
@@ -633,9 +681,6 @@ msgstr "خویشاوندان"
 
 msgid "Active"
 msgstr "فعال"
-
-msgid "Support Count"
-msgstr "تعداد حمایت"
 
 msgid "Other Supporter"
 msgstr "حامی دیگر"
@@ -687,6 +732,9 @@ msgstr "تحویل دارو"
 
 msgid "Support Programs"
 msgstr "تعیین برنامه‌های کمک"
+
+msgid "Total Other Support"
+msgstr "مجموع سایر کمک ها"
 
 msgid "Patient Description"
 msgstr "شرح بیمار"
@@ -960,3 +1008,12 @@ msgstr "دفتر یزد"
 
 msgid "Prescription Approval Office"
 msgstr "قیمت نسخه"
+
+msgid "Complete"
+msgstr "تکمیل"
+
+msgid "Waiting for Insurance"
+msgstr "در انتظار بیمه"
+
+msgid "Document Defects"
+msgstr "نقص مدارک"
