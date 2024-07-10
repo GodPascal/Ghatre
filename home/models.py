@@ -63,7 +63,7 @@ class InputLog(BaseModel):
         null=True, verbose_name=_('Last Action Date'), blank=False)
     description = models.TextField(blank=True, verbose_name=_('Description'))
     input_draft_status = models.CharField(
-        max_length=30, choices=INPUT_DRAFT_STATUS_CHOICES, verbose_name=_('Input Draft Status'))
+        max_length=30, choices=INPUT_DRAFT_STATUS_CHOICES, verbose_name=_('Input Draft Status'), default='waiting')
 
     class Meta:
         verbose_name = _('Input Log')
