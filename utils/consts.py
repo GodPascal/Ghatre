@@ -168,14 +168,49 @@ PATIENT_DRUG_STATUS_CHOICES = [
 ]
 
 DRAFT_TYPE_CHOICES = [
-  ('P', 'P'),
-  ('IT', 'IT')
+  ('P', 'حواله کاغذی'),
+  ('IT', 'حواله اینترنتی'),
+  ('F', 'فاکتور'),
+  ('DM', 'اعتباری دارو'),
+  ('DD', 'اعتباری تخفیف')
+]
+
+DRAFT_RECEIVER_CHOICES = [
+  ('pharmacy', 'داروخانه'),
+  ('individual', 'شخص'),
+  ('factory', 'کارخانه'),
+  ('medical-center', 'مرکز درمانی')
 ]
 
 DRAFT_STATUS_CHOICES = [
   ('active', 'فعال'),
   ('inactive', 'غیرفعال'),
+  ('pending', 'در انتظار')
+]
+
+DRAFT_RECEIVE_STATUS_CHOICES = [
   ('pending', 'در انتظار'),
+  ('received', 'دریافت شده'),
+  ('not-received', 'دریافت نشده')
+]
+
+SUPPORT_TYPE_CHOICES = [
+  ('cash', 'نقدی'),
+  ('non-cash', 'غیر نقدی'),
+  ('mix', 'هردو')
+]
+
+DRAFT_CAUSED_CHOICES = [
+  ('drug', 'دارو'),
+  ('test', 'آزمایش'),
+  ('imaging', 'عکسبرداری'),
+  ('discharge', 'ترخیص')
+]
+
+DRAFT_STATUS_CHOICES = [
+  ('accepted', 'تایید'),
+  ('voided', 'باطل'),
+  ('modify-amount', 'اصلاح مبلغ'),
 ]
 
 SUPPLIER_TYPE_CHOICES = [

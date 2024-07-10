@@ -1017,3 +1017,27 @@ msgstr "در انتظار بیمه"
 
 msgid "Document Defects"
 msgstr "نقص مدارک"
+
+msgid "Receive Status"
+msgstr "وضعیت دریافت"
+
+msgid "Receive Description"
+msgstr "دلیل عدم دریافت"
+
+msgid "Draft Receiver"
+msgstr "دریافت کننده حواله"
+
+msgid "Receiving Center"
+msgstr "مرکز دریافت خدمت"
+
+msgid "Draft Caused"
+msgstr "بابت"
+
+msgid "Total Amount"
+msgstr "مبلغ کل (ریال)"
+
+msgid "Modify Description"
+msgstr "توضیح تغییرات"
+
+msgid "Next Visit"
+msgstr "مراجعه بعدی"
