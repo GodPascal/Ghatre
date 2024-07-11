@@ -42,7 +42,7 @@ class InputLog(BaseModel):
     has_private_insurance = models.BooleanField(verbose_name=_('Has Private Insurance'))
     service_date = jmodels.jDateField(verbose_name=_('Service Date'))
     input_draft_status = models.CharField(
-        max_length=30, choices=INPUT_DRAFT_STATUS_CHOICES, verbose_name=_('Input Draft Status'))
+        max_length=30, choices=INPUT_DRAFT_STATUS_CHOICES, verbose_name=_('Input Draft Status'), default='waiting')
 
     class Meta:
         verbose_name = _('Input Log')
