@@ -63,10 +63,18 @@ MARITAL_STATUS_CHOICES = [
 SOCIAL_INSURANCE_TYPE_CHOICES = [
   ('health_insurance', _('Health Insurance')),
   ('social_security', _('Social Security')),
+  ('villagers_and_nomads', _('Villagers and Nomads')),
+  ('government_employees', _('Government Employees')),
+  ('special_diseases', _('Special Diseases')),
+  ('other_layers', _('Other Layers')),
   ('medical_services', _('Medical Services')),
   ('armed_forces', _('Armed Forces')),
+  ('foreigners_social_security', _('Foreigners-Health')),
+  ('foreigners_health', _('Foreigners-Social Security')),
   ('other', _('Other')),
   ('none', _('None')),
+  ('foreigners_none', _('Foreigners-None')),
+  ('baloch_none', _('Baloch-None')),
 ]
 
 EDUCATIONAL_STATUS_CHOICES = [
@@ -88,6 +96,9 @@ HOUSING_STATUS_CHOICES = [
   ('endowment', 'اوقاف'),
   ('relatives', 'بستگان'),
   ('janitor', 'سرایدار'),
+  ('parents_house', _('Parents House')),
+  ('child_house', _('Child House')),
+  ('relative_house', _('Relative House')),
   ('other', _('Other'))
 ]
 
@@ -157,14 +168,49 @@ PATIENT_DRUG_STATUS_CHOICES = [
 ]
 
 DRAFT_TYPE_CHOICES = [
-  ('P', 'P'),
-  ('IT', 'IT')
+  ('P', 'حواله کاغذی'),
+  ('IT', 'حواله اینترنتی'),
+  ('F', 'فاکتور'),
+  ('DM', 'اعتباری دارو'),
+  ('DD', 'اعتباری تخفیف')
+]
+
+DRAFT_RECEIVER_CHOICES = [
+  ('pharmacy', 'داروخانه'),
+  ('individual', 'شخص'),
+  ('factory', 'کارخانه'),
+  ('medical-center', 'مرکز درمانی')
 ]
 
 DRAFT_STATUS_CHOICES = [
   ('active', 'فعال'),
   ('inactive', 'غیرفعال'),
+  ('pending', 'در انتظار')
+]
+
+DRAFT_RECEIVE_STATUS_CHOICES = [
   ('pending', 'در انتظار'),
+  ('received', 'دریافت شده'),
+  ('not-received', 'دریافت نشده')
+]
+
+SUPPORT_TYPE_CHOICES = [
+  ('cash', 'نقدی'),
+  ('non-cash', 'غیر نقدی'),
+  ('mix', 'هردو')
+]
+
+DRAFT_CAUSED_CHOICES = [
+  ('drug', 'دارو'),
+  ('test', 'آزمایش'),
+  ('imaging', 'عکسبرداری'),
+  ('discharge', 'ترخیص')
+]
+
+DRAFT_STATUS_CHOICES = [
+  ('accepted', 'تایید'),
+  ('voided', 'باطل'),
+  ('modify-amount', 'اصلاح مبلغ'),
 ]
 
 SUPPLIER_TYPE_CHOICES = [
@@ -174,7 +220,10 @@ SUPPLIER_TYPE_CHOICES = [
 
 INPUT_LOG_STATUS_CHOICES = [
   ('reception', _('Reception')),
-  ('waiting', _('Waiting'))
+  ('waiting', _('Waiting')),
+  ('rejection', _('Rejection')),
+  ('detected', _('Detected')),
+  ('reviewed', _('Reviewed'))
 ]
 
 PATIENT_CASE_STATUS_CHOICES = [
@@ -183,6 +232,41 @@ PATIENT_CASE_STATUS_CHOICES = [
     ('waiting', _('Waiting')),
     ('semi-active', _('Semi Active'))
 ]
+
+RECIPIENT_CHOICES = [
+    ('patient', _('Patient')),
+    ('companion', _('Companion'))
+]
+
+INTERVAL_CHOICES = [
+    ('two_weeks', _('Two Weeks')),
+    ('three_weeks', _('Three Weeks')),
+    ('monthly', _('Monthly')),
+    ('two_months', _('Two_Months')),
+    ('three_months', _('Three_Months')), 
+    ('six_months', _('Six_Months')), 
+]
+
+SUPPORT_PROGRAM_CHOICES = [
+    ('one_time_payment', _('One Time Payment')),
+    ('supervisor_approval', _('Supervisor Approval')),
+    ('program', _('Program'))
+]
+
+DELIVERY_TYPE_CHOICES = [
+    ('self', _('Self')),
+    ('send', _('Send'))
+]
+
+CONTACT_LOCATION_CHOICES = [
+    ('office_call', _('Office Call')),
+    ('novatel_call', _('Novatel Call')),
+    ('13_aban_office', _('13 Aban Office')),
+    ('university_office', _('University Office')),
+    ('yazd_office', _('Yazd Office')),
+    ('prescription_approval_office', _('Prescription Approval Office'))
+]
+
 
 DESCRIPTION_OF_THE_LAST_ACTION = [
     ('interview_appointment_set', 'تنظیم قرار مصاحبه'),
@@ -214,4 +298,43 @@ INPUT_DRAFT_STATUS_CHOICES = [
     ('accepted', 'پذیرش'),
     ('rejected', 'عدم پذیرش'),
     ('waiting', 'در انتظار')
+]
+
+
+DESCRIPTION_OF_THE_LAST_ACTION = [
+    ('interview_appointment_set', 'تنظیم قرار مصاحبه'),
+    ('file_created', 'تشکیل پرونده'),
+    ('under_review', 'در حال بررسی'),
+    ('referred', 'ارجاع'),
+    ('waiting_foreign_single_dose', 'در انتظار- تک نسخه ای خارجی'),
+    ('waiting_domestic_single_dose', 'در انتظار- تک نسخه ای داخلی'),
+    ('waiting_expensive', 'در انتظار- گران قیمت'),
+    ('waiting_foreign_nationals', 'در انتظار - اتباع'),
+    ('no_response', 'عدم پاسخگویی'),
+    ('patient_did_not_create_file', 'عدم مراجعه بیمار برای تشکیل پرونده'),
+    ('resident_of_city', 'ساکن شهرستان'),
+    ('covered_by_other_charities', 'پوشش سایر خیریه ها'),
+    ('covered_by_basic_insurance', 'پوشش بیمه پایه'),
+    ('covered_by_supplementary_insurance', 'پوشش بیمه تکمیلی'),
+    ('no_drug_needed', 'عدم نیاز دارویی'),
+    ('financial_aid_requested', 'درخواست کمک مالی'),
+    ('treatment_completed', 'اتمام دوره درمان'),
+    ('patient_unwilling_to_follow_up', 'عدم تمایل و پیگیری بیمار'),
+    ('drug_equipment_requested', 'درخواست تجهیزات دارویی'),
+    ('drug_regimen_changed', 'تغییر رژیم دارویی'),
+    ('no_contract_pharmacy', 'عدم داروخانه طرف قرارداد'),
+    ('deceased', 'فوت'),
+    ('other', 'سایر')]
+INPUT_DRAFT_STATUS_CHOICES = [
+    ('identified', 'شناسایی شده'),
+    ('evaluated', 'ارزیابی شده'),
+    ('accepted', 'پذیرش'),
+    ('rejected', 'عدم پذیرش'),
+    ('waiting', 'در انتظار')
+]
+
+COMPLETION_CASE_CHOICES = [
+    ('complete', _('Complete')),
+    ('waiting_for_insurance ', _('Waiting for Insurance')),
+    ('document_defects', _('Document Defects'))
 ]
