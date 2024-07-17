@@ -140,12 +140,31 @@ class PatientCaseForm(forms.ModelForm):
         raise forms.ValidationError(
             _('Number should only contain digits.'))
     
+    def clean(self):
+        cleaned_data = super().clean()
+        nationality = cleaned_data.get('nationality')
+        national_code = cleaned_data.get('national_code')
+
+        if nationality == 'iranian':
+            if not national_code_validator(national_code):
+                self.add_error('national_code', _(
+                    'Enter a valid 10-digit Iranian national code.'))
+        else:
+            if not national_code:
+                self.add_error('national_code', _('This field is required.'))
+
+        return cleaned_data
+
     def clean_national_code(self):
-        if national_code_validator(self.cleaned_data['national_code']):
-            return self.cleaned_data['national_code']
-        
-        raise forms.ValidationError(
-            _('Enter a valid national code.'))
+        national_code = self.cleaned_data['national_code']
+        nationality = self.cleaned_data.get('nationality')
+
+        if nationality == 'iranian':
+            if len(national_code) != 10 or not national_code.isdigit():
+                raise forms.ValidationError(
+                    _('Iranian national code must be 10 digits.'))
+
+        return national_code
     
     def clean_first_guardian_national_code(self) -> bool:
         if not self.cleaned_data['first_guardian_national_code']:

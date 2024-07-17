@@ -1,4 +1,7 @@
 def national_code_validator(national_code: str) -> bool:
+    if not national_code:
+        return False
+
     if national_code.startswith('9'):
         return len(national_code) == 12 and national_code.startswith('9') and national_code.isdigit()
     else:
